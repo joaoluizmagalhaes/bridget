@@ -1,0 +1,68 @@
+.home__banner {
+  background-image: url('../img/imagem.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 25vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0 5.1rem;
+  text-align: center;
+}
+
+.home__text {
+  color: $dark-gray;
+  font-size: 1.4rem;
+}
+
+.home__banner-title {
+  font-size: 2.4rem;
+  color: $white;
+  font-weight: 700;
+  z-index: 3;
+  margin: 0;
+}
+
+.home__banner-subtitle {
+  font-size: 1.4rem;
+  color: $white;
+  font-weight: 400;
+  z-index: 3;
+}
+
+.home__section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home__section-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (min-width: 769px) {
+  .home__banner {
+    height: calc(100vh - 6.6rem);
+    background-attachment: fixed;
+  }
+
+  .home__banner-title {
+    margin: 1.2rem 0;
+    font-size: 4.7rem;
+  }
+
+  .home__banner-subtitle {
+    font-size: 2.1rem;
+    margin: 0 0 1.2rem 0;
+  }
+}

@@ -1,0 +1,30 @@
+html {
+  font-size: 62.5%; //to use rem in 10 base;
+  font-family: $roboto, sans-serif;
+}
+
+.overlay {
+  background-color: rgba($color: #000000, $alpha: 0.45);
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.primary {
+  color: $primary
+}
+
+.secondary {
+  color: $secondary;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1260px; 
+  }
+}

@@ -1,0 +1,7 @@
+@mixin transition($type) {
+	-webkit-transition: $type 200ms ease-in;
+	-moz-transition: $type 200ms ease-in;
+	-ms-transition: $type 200ms ease-in;
+	-o-transition: $type 200ms ease-in;
+	transition: $type 200ms ease-in;
+}
