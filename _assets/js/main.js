@@ -60,7 +60,7 @@
         if($('.header__menu').hasClass('closed')) {
           $('.header__menu-icon').attr('src', document.location.origin + '/Server/Freela/bridget/wp-content/themes/bridget/_assets/img/close.svg');
           $('.header__menu').addClass('open').removeClass('closed');
-          TweenMax.fromTo($('.header__menu'), 0.6, {x: 1000, display: 'none'}, {x:0, display: 'block'});
+          TweenMax.fromTo($('.header__menu'), 0.6, {x: -100, display: 'none', opacity: 0}, {x:0, display: 'flex', opacity: 1 });
         } else if($('.header__menu').hasClass('open')) {
           $('.header__menu-icon').attr('src', document.location.origin + '/Server/Freela/bridget/wp-content/themes/bridget/_assets/img/menu-icon.svg');
           $('.header__menu').addClass('closed').removeClass('open');
@@ -70,8 +70,115 @@
       });
 
       function close() {
-          TweenMax.fromTo($('.header__menu'), 0.8, {x:0, display: 'block'}, {x: 1000, display: 'none'});
+          TweenMax.fromTo($('.header__menu'), 0.8, {x:0, display: 'flex', opacity: 1}, {x: -100, display: 'none', opacity: 0});
       }
+
+      //Creates the home page carousel
+      const carouselContainer = document.querySelectorAll('.home__section-carousel');
+      if(carouselContainer) {
+          carouselContainer.forEach(function(carousel){
+              createCarousel('#' + carousel.id);
+          });
+      }
+
+      //Handle Carousel creation
+      function createCarousel(containerId) {
+
+          //Carousel 
+          const carouselItems = document.querySelectorAll(containerId + ' .carousel__item');
+          const nextBtn = document.querySelector(containerId + ' .carousel-arrow-right');
+          const prevBtn = document.querySelector(containerId + ' .carousel-arrow-left');
+          const bulletsWrapper = document.querySelector(containerId + ' .carousel-bullets-wrapper');
+          const totalItems = carouselItems.length;
+
+          for (var i = 0; i < totalItems; i++) {
+              bulletsWrapper.innerHTML += '<div class="carousel-bullets"></div>';
+          }
+          const bullets = document.querySelectorAll(containerId + ' .carousel-bullets');
+          bullets[0].classList.add('active');
+
+          const Carousel = {
+              currentItem: 0,
+
+              inLeft: (index) =>{
+
+                  const item = carouselItems[index];
+                  const timeLine = new TimelineMax();
+
+                  TweenMax.set(item, { scale: .9 });
+                  TweenMax.set(item, { left: '-250%' });
+                  
+                  timeLine
+                      .to(item, .3, { left: 0, right: 0  })
+                      .to(item, .2, { scale: 1 })
+              },
+
+              outRight: (index, nextIndex) => {
+
+                  const item = carouselItems[index];
+                  const timeLine = new TimelineMax();
+                  
+                  timeLine
+                      .to(item, .2, { scale: .9 })
+                      .to(item, .2, { left: '100%' })
+                      .to(bullets[index], 0.3, {className: '-=active'})
+                      .to(bullets[nextIndex], 0.3, {className: '+=active'})
+                      .call(Carousel.inLeft, [nextIndex], this, '.2');
+              },
+
+              inRight: (index) =>{
+
+                  const item = carouselItems[index];
+                  const timeLine = new TimelineMax();
+                  
+                  TweenMax.set(item, { scale: .9 });
+                  TweenMax.set(item, { left: '100%' });
+                  
+                  timeLine
+                      .to(item, .3, { left: 0, right: 0  })
+                      .to(item, .2, { scale: 1 })
+              },
+
+              outLeft: (index, nextIndex) => {
+
+                  const item = carouselItems[index];
+                  const timeLine = new TimelineMax();
+                  
+                  timeLine
+                      .to(item, .2, { scale: .9 })
+                      .to(item, .2, { left: '-250%' })
+                      .to(bullets[index], 0.3, {className: '-=active'})
+                      .to(bullets[nextIndex], 0.3, {className: '+=active'})
+                      .call(Carousel.inRight, [nextIndex], this, '.2');
+              },
+
+              next: () => {
+                  const next = Carousel.currentItem !== carouselItems.length - 1 ? Carousel.currentItem + 1 : 0 ;
+                  Carousel.outRight(Carousel.currentItem, next);
+                  Carousel.currentItem = next;
+              },
+
+              prev: () => {
+                  const prev = Carousel.currentItem > 0 ? Carousel.currentItem - 1 : carouselItems.length - 1 ;
+                  Carousel.outLeft(Carousel.currentItem, prev);
+                  Carousel.currentItem = prev;
+              }
+          }
+
+            //Events 
+            nextBtn.addEventListener('click', Carousel.next);
+            prevBtn.addEventListener('click', Carousel.prev);
+        }
+
+        //enable swip for change the carousel
+        var body = document.querySelector('body');
+        var hammertime = new Hammer(body);
+
+        hammertime.on('swipeleft',function(e) {
+            $('.carousel-arrow-left').click();
+        }).on('swiperight',function(e) {
+            $('.carousel-arrow-right').click();
+        });
 
     });
 
