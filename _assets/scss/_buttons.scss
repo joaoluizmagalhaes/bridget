@@ -49,4 +49,17 @@
 .btn__icon {
   width: 1.8rem;
   height: 1.8rem;
+  margin-right: 1rem;
+}
+
+.btn__form {
+  margin: auto;
+}
+
+
+@media (min-width: 769px) {
+
+  .btn__form {
+    margin: auto 0 auto auto;
+  }
 }

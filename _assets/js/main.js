@@ -74,7 +74,8 @@
       }
 
       //Creates the home page carousel
-      const carouselContainer = document.querySelectorAll('.home__section-carousel');
+      const carouselContainer = document.querySelectorAll('.carousel');
+      console.log(carouselContainer);
       if(carouselContainer) {
           carouselContainer.forEach(function(carousel){
               createCarousel('#' + carousel.id);
