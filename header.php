@@ -17,12 +17,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="icon" href="<?php bloginfo('template_url'); ?>/_assets/img/favicon.png">
-    <title><?php wp_title(); ?></title>
-    <meta name="description" content=Bridget">
+    <title>Bridget <?php wp_title(); ?></title>
+    <meta name="description" content="Bridget">
     <meta name="keywords" content="">
     <meta name="author" content="João Magalhães">
     <?php wp_head(); ?>
-	
 	
 </head>
 
@@ -36,10 +35,10 @@
                     <img src="<?php bloginfo('template_url'); ?>/_assets/img/menu-icon.svg" alt="menu" class="header__menu-icon">
                     <nav class="header__menu closed">
                         <ul class="header__menu-list">
-                            <li class="header__menu-list-item active">Home</li>
-                            <li class="header__menu-list-item">Sobre</li>
-                            <li class="header__menu-list-item">Contato</li>
-                            <li class="header__menu-list-item">News</li>
+                            <li class="header__menu-list-item active"><a href="<?php echo home_url(); ?>">Home</a></li>
+                            <li class="header__menu-list-item"><a href="<?php echo home_url(); ?>/sobre">Sobre</a></li>
+                            <li class="header__menu-list-item"><a href="<?php echo home_url(); ?>/contato">Contato</a></li>
+                            <li class="header__menu-list-item"><a href="<?php echo home_url(); ?>/noticias">News</a></li>
                         </ul>
                         <ul class="header__menu-list bold">
                             <li class="header__menu-list-item">Avaliar</li>

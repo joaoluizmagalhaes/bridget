@@ -1,0 +1,12 @@
+.project__section-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  min-height: 50rem;
+
+  img {
+    max-width: 100%;
+  }
+}

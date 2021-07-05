@@ -1,0 +1,139 @@
+.about__section {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &.home__search {
+    padding: 5rem 0 ;
+  }
+
+  &.home__contact {
+    padding-bottom: 0;
+  }
+
+
+}
+.about__pages {
+  .home__section-link {
+    margin: 2rem 0;
+  }
+
+  .about__contact-wrapper {
+    padding: 0 1.5rem
+  }
+
+  .about__section-title {
+    margin: 2rem 0;
+  }
+
+  .about__section-pages-img {
+    max-width: 100%;
+  }
+
+}
+.about__section-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__section-title {
+  font-weight: 700;
+  color: $primary;
+  font-size: 2.6rem;
+  text-align: left;
+  margin: 0;
+}
+
+.about__section-text {
+  font-size: 1.4rem;
+  text-align: left;
+  margin: 0
+}
+
+.about__section-subtitle {
+  color: $primary;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 2rem 0 ;
+  text-align: left;
+}
+
+.about__contact-wrapper {
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: flex-start;
+  align-items: left;
+}
+
+.about__section-contact-img {
+  max-width: 100%;
+}
+
+.about__title-secondary {
+  text-align: center;
+  color: $secondary;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.about__text-secondary {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  max-width: 60%;
+  margin: 0 auto 3rem;
+
+  &.last {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .about__section {  
+    &.home__contact {
+      padding: 3rem 0 8rem;
+    }
+
+    &.about__pages {
+      padding: 5rem 0 8rem;
+    }
+  }
+  .about__section-contact-img {
+    box-shadow: 20px 20px 0px 3px $secondary;
+    -webkit-box-shadow: 20px 20px 0px 3px $secondary;
+    -moz-box-shadow: 20px 20px 0px 3px $secondary;
+    border-top-left-radius: 2.5rem;
+  }
+
+  .about__section-title{
+    max-width: 80%;
+    text-align: center;
+    margin: 4rem 0 8rem;
+    font-size: 3.5rem;
+  }
+
+  .about__section-text {
+    font-size: 1.6rem;
+  }
+
+  .about__title-secondary {
+    font-size: 3.5rem;
+  }
+  
+  .about__text-secondary {
+    font-size: 1.6rem;
+    margin: auto;
+  }
+
+  .about__contact-wrapper {
+    justify-content: center;
+  }
+}
