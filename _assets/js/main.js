@@ -47,10 +47,15 @@
     */
 
       $(document).on('click', function() {
-        if($('.header__menu closed').hasClass('open')) {
+        if($('.header__menu').hasClass('open')) {
           $('.header__menu').addClass('closed').removeClass('open');
-          close();
+          close($('.header__menu'));
         }
+
+        if($('.news__header-menu').hasClass('open')) {
+            $('.news__header-menu').addClass('closed').removeClass('open');
+            close($('.news__header-menu'));
+          }
       });
 
       $('.header__menu-icon').on('click', function(e) {
@@ -64,13 +69,26 @@
         } else if($('.header__menu').hasClass('open')) {
           $('.header__menu-icon').attr('src', document.location.origin + '/Server/Freela/bridget/wp-content/themes/bridget/_assets/img/menu-icon.svg');
           $('.header__menu').addClass('closed').removeClass('open');
-          close();
+          close($('.header__menu'));
         }
 
       });
 
-      function close() {
-          TweenMax.fromTo($('.header__menu'), 0.8, {x:0, display: 'flex', opacity: 1}, {x: -100, display: 'none', opacity: 0});
+      $('.news__menu-icon').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        if($('.news__header-menu').hasClass('closed')) {
+          $('.news__header-menu').addClass('open').removeClass('closed');
+          TweenMax.fromTo($('.news__header-menu'), 0.6, {x: -100, display: 'none', opacity: 0}, {x:0, display: 'flex', opacity: 1 });
+        } else if($('.news__header-menu').hasClass('open')) {
+          $('.news__header-menu').addClass('closed').removeClass('open');
+          close($('.news__header-menu'));
+        }
+
+      });
+
+      function close(menu) {
+          TweenMax.fromTo(menu, 0.8, {x:0, display: 'flex', opacity: 1}, {x: -100, display: 'none', opacity: 0});
       }
 
       //Creates the home page carousel
