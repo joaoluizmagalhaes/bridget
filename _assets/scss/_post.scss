@@ -57,3 +57,9 @@
   color: $primary;
   margin: 0 2rem 0 0; 
 }
+
+@media (min-width: 769px) {
+  .post__header{
+    margin-bottom: 5.6rem;
+  }
+}

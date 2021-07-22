@@ -15,23 +15,7 @@ $light-gray: #B7C3D1;
 
 @font-face {
   font-family: Roboto;
-  src: url("../fonts/Roboto-Italic.ttf") format("truetype");
-  font-weight: 400;
-}
-@font-face {
-  font-family: Roboto;
-  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
-  font-weight: 400;
-}
-@font-face {
-  font-family: Roboto;
-  src: url("../fonts/Roboto-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-}
-@font-face {
-  font-family: Roboto;
-  src: url("../fonts/Roboto-Bold.ttf") format("truetype");
-  font-weight: 700;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 }
 
 $roboto: 'Roboto'; 

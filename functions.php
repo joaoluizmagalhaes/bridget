@@ -15,5 +15,46 @@
 		wp_enqueue_script('bridget-js');
     }
 
-
     add_theme_support( 'post-thumbnails' ); 
+    add_theme_support( 'menus' );
+
+    function html_allowed() {
+        $parameters = array(
+            'alt'              => array(),
+            'autocomplete'     => array(),
+            'class'            => array(),
+            'hidden'           => array(),
+            'href'             => array(),
+            'height'           => array(),
+            'id'               => array(),
+            'meta-value'       => array(),
+            'rel'              => array(),
+            'selected'         => array(),
+            'src'              => array(),
+            'srcset'           => array(),
+            'style'            => array(),
+            'sizes'            => array(),
+            'title'            => array(),
+            'value'            => array(),
+            'width'            => array(),
+        );
+
+        $tags = array(
+            'p'      => $parameters,
+            'strong' => $parameters,
+            'a'      => $parameters
+           
+        );
+
+        return $tags;
+    }
+
+    add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+    function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'active ';
+    }
+    return $classes;
+    }
+

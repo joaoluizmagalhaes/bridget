@@ -50,7 +50,16 @@
   cursor: pointer;
   @include transition(all);
 
+  a {
+    color: $white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   &:hover {
+    text-decoration: none;
     transform: scale(1.1);
   }
 }
@@ -94,7 +103,14 @@
 }
 
 @media (min-width: 769px) {
+  .footer {
+    padding: 7.3rem 0 4rem;
+  }
   .footer__title {
     margin-top: 0.5rem;
+  }
+
+  .footer__copyright {
+    margin: 1rem
   }
 }
