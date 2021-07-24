@@ -1,6 +1,6 @@
 .btn {
   padding: 0 2.4rem;
-  color: $white;
+  color: $white !important;
   border: none;
   border-radius: 0;
   display: flex;
@@ -9,7 +9,6 @@
   align-items: center;
   min-width: 12.5rem;
   height: 4.7rem;
-  font-style: none;
   font-size: 1.4rem;
   @include transition(all);
   cursor: pointer;

@@ -1,0 +1,43 @@
+.search__article {
+  padding: 5rem 0;
+
+  .home__search-input-wrapper{
+    width: 100%;
+    border: 0.1rem solid $light-gray;
+  }
+}
+.search__title {
+  font-size: 2.5rem;
+  color: $primary;
+  font-weight: 700;
+
+}
+
+.search__result-link {
+  font-size: 2rem;
+  color: $primary;
+  font-weight: 700;
+  @include transition(all);
+
+  &:hover {
+    color: $secondary;
+    text-decoration: none;
+  }
+}
+
+.search__result-excerpt {
+  font-size: 1.6rem;
+}
+
+
+
+@media (min-width: 769px) {
+  .search__title {
+    font-size: 3.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .search__result-link {
+    font-size: 2.5rem;
+  }
+}
