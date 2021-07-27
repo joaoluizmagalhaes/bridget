@@ -7,10 +7,10 @@
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main">
-        <section class="home__banner" style=" background-image: url(<?= $customFields['banner']['imagem'] ?>)"> 
-            <h1 class="home__banner-title"><?= $customFields['banner']['titulo'] ?></h1>
-            <h3 class="home__banner-subtitle"><?= $customFields['banner']['subtitulo'] ?></h3>
-            <a class="btn btn__secondary" href="<?= $customFields['banner']['link_do_botao'] ?>"><?= $customFields['banner']['texto_do_botao'] ?></a>
+        <section class="home__banner" style=" background-image: url(<?= esc_url($customFields['banner']['imagem']) ?>)"> 
+            <h1 class="home__banner-title"><?= esc_html($customFields['banner']['titulo']) ?></h1>
+            <h3 class="home__banner-subtitle"><?= esc_html($customFields['banner']['subtitulo']) ?></h3>
+            <a class="btn btn__secondary" href="<?= esc_url($customFields['banner']['link_do_botao']) ?>"><?= esc_html($customFields['banner']['texto_do_botao']) ?></a>
             <div class="overlay"></div>
         </section>
         <section class="home__section">
@@ -36,15 +36,15 @@
             <div class="container">
                 <div class="row g-0">
                     <div class="home__section-wrapper">
-                        <h2 class="home__section-title"><?= $customFields['secao_de_cards']['titulo_da_secao'] ?></h2>
+                        <h2 class="home__section-title"><?= esc_html($customFields['secao_de_cards']['titulo_da_secao']) ?></h2>
                         <div class="home__section-carousel carousel" id="carousel">
                             <div class="home__section-carousel-wrapper" >
                                 <?php 
                                     foreach($customFields['secao_de_cards']['cards'] as $card) { ?>
                                         <div class="home__section-carousel-card carousel__item">
-                                        <img src="<?= $card['card']['icone'] ?>" alt="" class="home__section-carousel-card-icon svg">
-                                            <h3 class="home__section-carousel-card-title"><?= $card['card']['titulo'] ?></h3>
-                                            <p class="home__section-carousel-card-text"><?= $card['card']['texto'] ?></p>
+                                        <img src="<?= esc_url($card['card']['icone']) ?>" alt="" class="home__section-carousel-card-icon svg">
+                                            <h3 class="home__section-carousel-card-title"><?= esc_html($card['card']['titulo']) ?></h3>
+                                            <p class="home__section-carousel-card-text"><?= esc_html($card['card']['texto']) ?></p>
                                         </div>
                                     <?php }
                                 ?>
@@ -70,9 +70,9 @@
                                 <?php 
                                     foreach($customFields['secao_de_cards']['cards'] as $card) { ?>
                                         <div class="home__section-carousel-card col-6 col-lg-6 col-xl-3">
-                                            <img src="<?= $card['card']['icone'] ?>" alt="" class="home__section-carousel-card-icon svg">
-                                            <h3 class="home__section-carousel-card-title"><?= $card['card']['titulo'] ?></h3>
-                                            <p class="home__section-carousel-card-text"><?= $card['card']['texto'] ?></p>
+                                            <img src="<?= esc_url($card['card']['icone']) ?>" alt="" class="home__section-carousel-card-icon svg">
+                                            <h3 class="home__section-carousel-card-title"><?= esc_html($card['card']['titulo']) ?></h3>
+                                            <p class="home__section-carousel-card-text"><?= esc_html($card['card']['texto']) ?></p>
                                         </div>
                                     <?php }
                                 ?>
@@ -98,12 +98,12 @@
             <div class="container">
                 <div class="row g-0">
                     <div class="col-12 col-lg-5 offset-lg-1 p-0">
-                        <img src="<?= $customFields['quem_somos']['imagem'] ?>" alt="quem somos" class="home__section-contact-img">
+                        <img src="<?= esc_url($customFields['quem_somos']['imagem']) ?>" alt="quem somos" class="home__section-contact-img">
                     </div>
                     <div class="col-12 col-lg-4 home__contatic-wrapper">
-                        <h4 class="home__section-title"><?= $customFields['quem_somos']['titulo'] ?></h4>
-                        <?= $customFields['quem_somos']['texto'] ?>
-                        <a href="<?= $customFields['quem_somos']['link']['url'] ?>" class="home__section-link"><?= $customFields['quem_somos']['link']['texto_do_link'] ?> <img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-link.svg" class="svg home__section-link-icon"></a>
+                        <h4 class="home__section-title"><?= esc_html($customFields['quem_somos']['titulo']) ?></h4>
+                        <?=  wp_kses($customFields['quem_somos']['texto'], html_allowed()) ?>
+                        <a href="<?= esc_url($customFields['quem_somos']['link']['url']) ?>" class="home__section-link"><?= esc_html($customFields['quem_somos']['link']['texto_do_link']) ?> <img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-link.svg" class="svg home__section-link-icon"></a>
                     </div>
                 </div>
             </div>
@@ -120,12 +120,12 @@
                                     foreach($customFields['carrossel_de_depoimentos']['depoimento'] as $depoimento) { ?>
                                         <div class="home__section-carousel-card-testimonial carousel__item">
                                             <div class="home__section-carousel-card-testimonial-photo-wrapper">
-                                                <img src="<?= $depoimento['foto'] ?>" class="home__section-carousel-card-photo">
+                                                <img src="<?= esc_url($depoimento['foto']) ?>" class="home__section-carousel-card-photo">
                                             </div>
-                                            <p class="home__section-carousel-card-testimonial-text">"<?= $depoimento['texto'] ?>"</p>
+                                            <p class="home__section-carousel-card-testimonial-text">"<?= esc_html($depoimento['texto']) ?>"</p>
                                             <div class="home__section-carousel-card-testimonial-name-wrapper">
-                                                <p class="name"><?= $depoimento['nome'] ?></p>
-                                                <p class="location"><?= $depoimento['cidade'] ?></p>
+                                                <p class="name"><?= esc_html($depoimento['nome']) ?></p>
+                                                <p class="location"><?= esc_html($depoimento['cidade']) ?></p>
                                             </div>                                            
                                         </div>
                                     <?php }
@@ -153,12 +153,12 @@
                                     foreach($customFields['carrossel_de_depoimentos']['depoimento'] as $depoimento) { ?>
                                         <div class="home__section-carousel-card-testimonial col-6 col-lg-6 col-xl-3">
                                             <div class="home__section-carousel-card-testimonial-photo-wrapper">
-                                                <img src="<?= $depoimento['foto'] ?>" class="home__section-carousel-card-photo">
+                                                <img src="<?= esc_url($depoimento['foto']) ?>" class="home__section-carousel-card-photo">
                                             </div>
-                                            <p class="home__section-carousel-card-testimonial-text">"<?= $depoimento['texto'] ?>"</p>
+                                            <p class="home__section-carousel-card-testimonial-text">"<?= esc_html($depoimento['texto']) ?>"</p>
                                             <div class="home__section-carousel-card-testimonial-name-wrapper">
-                                                <p class="name"><?= $depoimento['nome'] ?></p>
-                                                <p class="location"><?= $depoimento['cidade'] ?></p>
+                                                <p class="name"><?= esc_html($depoimento['nome']) ?></p>
+                                                <p class="location"><?= esc_html($depoimento['cidade']) ?></p>
                                             </div>                                            
                                         </div>
                                     <?php }
@@ -271,26 +271,33 @@
             <div class="container">
                 <div class="row g-0">
                     <div class="home__section-wrapper">
-                        <h2 class="home__section-title">Estamos ansiosos para falar com você</h2>
+                        <h2 class="home__section-title"><?= esc_html($customFields['secao_de_contato']['titulo']) ?></h2>
                         <div class="container">
                             <div class="row g-0">
                                 <div class="col-md-4 d-none d-md-flex home__contact-whats">
-                                    <h3 class="home__section-subtitle">Precisa de um serviço 100% sob medida?</h3>
-                                    <p class="home__section-text">Nossa equipe está pronta para responder suas dúvidas e elaborar a melhor solução para você.</p>
-                                    <button class="btn btn__primary"><img src="<?php bloginfo('template_url'); ?>/_assets/img/whats-icon.svg" alt="login" class="btn__icon svg"> WhatsApp</button>
+                                    <h3 class="home__section-subtitle"><?= esc_html($customFields['secao_de_contato']['subtitulo']) ?></h3>
+                                    <p class="home__section-text"><?= esc_html($customFields['secao_de_contato']['texto']) ?></p>
+                                    <a href="https://api.whatsapp.com/send?phone=55<?= esc_html($customFields['secao_de_contato']['numero_whatsapp']) ?>" class="btn btn__primary" target="_blank" ><img src="<?php bloginfo('template_url'); ?>/_assets/img/whats-icon.svg" alt="login" class="btn__icon svg"> WhatsApp</a>
                                 </div>
                                 <div class="col-12 offset-md-1 col-md-7">
-                                    <form action="#" class="home__contact-form">
-                                        <label for="" class="home__contact-form-label">Seu nome</label>
-                                        <input type="text" name="" class="home__contact-form-input">
-                                        <label for="" class="home__contact-form-label">Seu Telefone</label>
-                                        <input type="text" name="" class="home__contact-form-input">
-                                        <label for="" class="home__contact-form-label">Seu melhor E-mail</label>
-                                        <input type="text" name="" class="home__contact-form-input">
-                                        <label for="" class="home__contact-form-label">Mensagem</label>
-                                        <textarea name="" id="" class="home__contact-form-textarea"></textarea>
-                                        <button class="btn btn__secondary btn__form">Enviar</button>
+                                    <form action="#" class="home__contact-form" id="contact-form">
+                                        <label for="nome" class="home__contact-form-label">Seu nome</label>
+                                        <input type="text" name="nome" class="home__contact-form-input">
+                                        <label for="telefone" class="home__contact-form-label">Seu Telefone</label>
+                                        <input type="text" name="telefone" class="home__contact-form-input">
+                                        <label for="email" class="home__contact-form-label">Seu melhor E-mail</label>
+                                        <input type="text" name="email" class="home__contact-form-input">
+                                        <label for="mensagem" class="home__contact-form-label">Mensagem</label>
+                                        <textarea name="mensagem" class="home__contact-form-textarea"></textarea>
+                                        <button class="btn btn__secondary btn__form" type="submit">Enviar</button>
                                     </form>
+                                    <div class="lds-default newsletter__msg"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                    <div class="newsletter__success resume__msg">
+                                        <p class="resume__success-text"><strong>Seu E-mail foi cadastrado com sucesso.</strong><br>Fique atento as nossas mensagens.</p>
+                                    </div>
+                                    <div class="newsletter__error resume__msg">
+                                        <p class="resume__success-text"><strong>Infelizmente algo saiu errado, tente novamente mais tarde!</strong></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

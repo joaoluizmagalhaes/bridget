@@ -1,6 +1,6 @@
 (function($) {
 
-  $(document).ready(function() {
+    $(document).ready(function() {
       /*
        * Replace all SVG images with inline SVG
        */
@@ -187,18 +187,65 @@
             //Events 
             nextBtn.addEventListener('click', Carousel.next);
             prevBtn.addEventListener('click', Carousel.prev);
-        }
+      }
 
-        //enable swip for change the carousel
-        var body = document.querySelector('body');
-        var hammertime = new Hammer(body);
+      //enable swip for change the carousel
+      var body = document.querySelector('body');
+      var hammertime = new Hammer(body);
 
-        hammertime.on('swipeleft',function(e) {
-            $('.carousel-arrow-left').click();
-        }).on('swiperight',function(e) {
-            $('.carousel-arrow-right').click();
+      hammertime.on('swipeleft',function(e) {
+          $('.carousel-arrow-left').click();
+      }).on('swiperight',function(e) {
+          $('.carousel-arrow-right').click();
+      });
+
+
+      /*
+       * Resume email send
+       */
+      
+      $('#contact-form').on('submit', function(e){
+        e.preventDefault();
+
+        var siteDomain =  document.location.origin + '/Server/Freela/bridget/wp-admin/admin-ajax.php';
+
+        animateMessage($('#contact-form'), $('.lds-default'));
+
+        var data = new FormData(this);
+        
+        data.append('action', 'sendContactForm');
+
+        console.log(...data);
+        
+        $.ajax({
+            url: siteDomain,
+            type: "POST",
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success:function(data) {
+                animateMessage($('.lds-default'), $('.newsletter__success.resume__msg'));
+                console.log(data);
+            },
+            error: function(errorThrown){
+                animateMessage($('.lds-default'), $('.newsletter__error.resume__msg'));
+                console.log(errorThrown);
+            }
         });
-
     });
+
+    /*
+      * TimelineMax to animate the message box response
+      */
+    function animateMessage(fadeIn, fadeOut) {
+
+        var tl = new TimelineMax();
+
+        tl.fromTo(fadeIn, 1, {opacity: 1}, {ease: Power4.easeOut, opacity: 0, display: 'none',}).fromTo(fadeOut, 0.5, {opacity: 0}, {ease: Power4.easeIn, opacity: 1, display: 'inline-block'});
+
+    }
+
+  });
 
 })( jQuery );

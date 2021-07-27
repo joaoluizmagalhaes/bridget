@@ -1,4 +1,13 @@
 <?php
+
+    require_once 'plugins/plugins.php';
+
+    // Localize the script with new data
+	$ajaxsettings = array(
+	    'ajaxurl' => admin_url('admin-ajax.php')
+	);
+	wp_localize_script( 'bridget-js', 'ajaxsettings', $ajaxsettings );
+
     add_action('wp_enqueue_scripts','bridget_enqueue_styles', 15);
     function bridget_enqueue_styles(){
         wp_enqueue_style('bootstrap-grid', get_template_directory_uri().'/_assets/vendor/bootstrap/bootstrap.min.css');
@@ -42,7 +51,10 @@
         $tags = array(
             'p'      => $parameters,
             'strong' => $parameters,
-            'a'      => $parameters
+            'a'      => $parameters,
+            'h1'     => $parameters,
+            'h2'     => $parameters,
+            'h3'     => $parameters,
            
         );
 
