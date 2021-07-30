@@ -207,15 +207,13 @@
       $('#contact-form').on('submit', function(e){
         e.preventDefault();
 
-        var siteDomain =  document.location.origin + '/Server/Freela/bridget/wp-admin/admin-ajax.php';
+        var siteDomain =  document.location.origin + '/testes/wp-admin/admin-ajax.php';
 
         animateMessage($('#contact-form'), $('.lds-default'));
 
         var data = new FormData(this);
         
         data.append('action', 'sendContactForm');
-
-        console.log(...data);
         
         $.ajax({
             url: siteDomain,
@@ -226,7 +224,6 @@
             processData:false,
             success:function(data) {
                 animateMessage($('.lds-default'), $('.newsletter__success.resume__msg'));
-                console.log(data);
             },
             error: function(errorThrown){
                 animateMessage($('.lds-default'), $('.newsletter__error.resume__msg'));

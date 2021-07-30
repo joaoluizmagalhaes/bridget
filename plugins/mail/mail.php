@@ -87,7 +87,7 @@
 
       	$assunto = "Mensagem via site Bridget!";
 
-      	$mail_sent = mailing('dukejlf@gmail.com', $assunto, $mensagem);
+      	$mail_sent = mailing('contato@bridget.com.br', $assunto, $mensagem);
 
         if ($mail_sent === true) {
             return true;
@@ -130,11 +130,11 @@
         $namefrom          = NCN_MAILER_NAME;
         $mail              = new PHPMailer();
         $mail->IsSMTP();   // enable SMTP
-        $mail->SMTPDebug   = 2;
+        $mail->SMTPDebug   = 3;
         $mail->Debugoutput = 'html';
         $mail->CharSet     = 'UTF-8';
         $mail->SMTPAuth    = true;   // user and password
-        $mail->SMTPSecure  = "tls";    // options: 'ssl', 'tls' , ''
+        $mail->SMTPSecure  = "ssl";    // options: 'ssl', 'tls' , ''
         $mail->Host        = NCN_MAILER_HOST;
         $mail->Port        = NCN_MAILER_PORT;
         $mail->Username    = NCN_MAILER_FROM;
@@ -147,9 +147,6 @@
         //$mail->AltBody  = $altmess;
         $mail->Body = $message;
         $mail->isHTML(true);   // Set HTML type
-        if($attachment !== null) {
-            $mail->addAttachment($attachment['file']['tmp_name'], $attachment['file']['name'] );
-        }
             
         $mail->addAddress($to);
 
