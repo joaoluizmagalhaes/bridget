@@ -18,12 +18,15 @@
               <p class="news__menu-subtitle d-md-none">Categorias</p>
               <nav class="news__header-menu container closed">
                 <img src="<?php bloginfo('template_url'); ?>/_assets/img/close-white.svg" alt="menu" class="svg news__menu-icon news__menu-close">
+                <?php $categories = get_categories(); ?>
                 <ul class="news__header-menu-list">
                   <li class="news__header-menu-list-item">Todas</li>
-                  <li class="news__header-menu-list-item">Valuation</li>
-                  <li class="news__header-menu-list-item">Gestão de Empresas</li>
-                  <li class="news__header-menu-list-item">Compra e Venda</li>
-                  <li class="news__header-menu-list-item">Mercado</li>
+                  <?php for( $i = 0; $i <= 4; $i++) { ?>
+                    <?php if( $categories[$i]->name !== NULL ) { ?>
+                      <li class="news__header-menu-list-item" data-slug="<?= $categories[$i]->slug; ?>"><?= esc_html($categories[$i]->name) ?></li>
+                    <?php } ?>
+                  <?php } ?>
+                  
                 </ul>
               </nav>
               <input type="text" class="news__menu-search" placeholder="Pesquisar">
@@ -34,92 +37,60 @@
     </section>
     <section class="news">
       <div class="container">
-        <div class="row news__wrapper">
+        <div class="row news__wrapper news-reload">
           <div class="col-12"><h2 class="news__section-title">Mais lidas</h2></div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
+          <?php  
+
+            $args = array(
+              'post_type'      => 'post',
+              'post_status'    => 'publish',
+              'posts_per_page' => 3,
+              'order'          => 'DESC',
+              'orderby'        => 'meta_value_num',
+              'meta_key'       => 'post_views_count'
+            );
+
+            $the_query = new WP_Query( $args );
+                      
+            //The Loop
+            if ( $the_query->have_posts() ) {
+              while ( $the_query->have_posts() ) {
+                $the_query->the_post(); 
+
+                get_template_part('templates/components/news-card');
+                  
+              }
+            } 
+            
+            wp_reset_query(); 
+          ?>
         </div>
         <div class="row news__wrapper">
           <div class="col-12"><h2 class="news__section-title">Últimas notícias</h2></div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
-          <div class="col-12 col-md-3 news__card">
-            <span class="news__card-tag">Valuation</span>
-            <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-            <div class="news__card-wrapper">
-              <h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-              <p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-              <a href="#" class="home__section-link">Leia mais</a>
-            </div>
-          </div>
+
+          <?php 
+              $args = array(
+                  'post_type'      => 'post',
+                  'post_status'    => 'publish',
+                  'posts_per_page' => 6,
+                  'order'          => 'DESC',
+                  'orderby'        => 'ID',
+              );
+
+              $the_query = new WP_Query( $args );
+
+              //The Loop
+              if ( $the_query->have_posts() ) {
+                while ( $the_query->have_posts() ) {
+                  $the_query->the_post(); 
+  
+                  get_template_part('templates/components/news-card');
+                    
+                }
+              } 
+              
+              wp_reset_query(); 
+            ?>
         </div>
       </div>
     </section>

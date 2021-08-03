@@ -22,7 +22,9 @@ get_header();
 
 					// Load posts loop.
 					while ( have_posts() ) {
-						the_post(); ?>
+						the_post(); 
+						setPostViews(get_the_ID());
+						?>
 						<div class="container">
 							<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 								<header class="post__header">

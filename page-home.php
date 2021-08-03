@@ -182,8 +182,8 @@
                                         'post_type'      => 'post',
                                         'post_status'    => 'publish',
                                         'posts_per_page' => 4,
-                                        'order'          =>'DESC',
-                                        'orderby'        =>'ID',
+                                        'order'          => 'DESC',
+                                        'orderby'        => 'ID',
                                     );
 
                                     $the_query = new WP_Query( $args );
@@ -204,6 +204,7 @@
                                             </div>
                                         <?php } ?>
                                     <?php } ?>
+                                <?php wp_reset_query(); ?>
                              </div>
                             <a href="http://localhost:8080/Server/Freela/bridget/noticias/" class="btn btn__secondary">Ver mais notícias</a>
                         </div>

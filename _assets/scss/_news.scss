@@ -117,16 +117,24 @@
   max-width: 31.8rem;
   margin-right: 2.5rem;
   margin-bottom: 4rem;
+  overflow: hidden;
+  position: relative;
+  padding-top: 19.3rem;
 }
 
 .news__card-img {
-  max-width: 100%;
-  position: relative;
+  top: 0;
+  height: 19.3rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+
 }
 
 .news__card-tag {
   position: absolute;
-  width: 9rem;
+  padding: 0 1.8rem;
   height: 2.5rem;
   background-color: $secondary;
   color: $white;
@@ -209,6 +217,7 @@
 
   .news__header-menu-list-item {
     margin-right: 3rem;
+    cursor: pointer;
   }
 
   .news__menu-search {
