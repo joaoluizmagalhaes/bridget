@@ -4,6 +4,7 @@
   .home__search-input-wrapper{
     width: 100%;
     border: 0.1rem solid $light-gray;
+    
   }
 }
 .search__title {
@@ -11,6 +12,10 @@
   color: $primary;
   font-weight: 700;
 
+}
+
+.search__result-wrapper {
+  margin-bottom: 4rem;
 }
 
 .search__result-link {

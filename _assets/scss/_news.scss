@@ -88,6 +88,11 @@
 .news__header-menu-list-item {
   font-size: 1.4rem;
   color: $white;
+  @include transition(all);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .news__menu-close {
@@ -120,6 +125,11 @@
   overflow: hidden;
   position: relative;
   padding-top: 19.3rem;
+  @include transition(all);
+
+  &:hover {
+    transform: scale(1.01);
+  }
 }
 
 .news__card-img {

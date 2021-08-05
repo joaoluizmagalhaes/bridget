@@ -29,7 +29,7 @@
                   
                 </ul>
               </nav>
-              <input type="text" class="news__menu-search" placeholder="Pesquisar">
+              <input type="text" class="news__menu-search" name="keyword" placeholder="Pesquisar">
             </div>
           </div>
         </div>

@@ -46,7 +46,7 @@
     * Show/hide header menu on mobile.
     */
 
-    $(document).on('click', function() {
+    $(document).click(function() {
       if($('.header__menu').hasClass('open')) {
         $('.header__menu').addClass('closed').removeClass('open');
         close($('.header__menu'));
@@ -58,7 +58,7 @@
         }
     });
 
-    $('.header__menu-icon').on('click', function(e) {
+    $('.header__menu-icon').click(function(e) {
       
       e.stopPropagation();
       e.preventDefault();
@@ -74,7 +74,7 @@
 
     });
 
-    $('.news__menu-icon').on('click', function(e) {
+    $('.news__menu-icon').click(function(e) {
       e.stopPropagation();
       e.preventDefault();
       if($('.news__header-menu').hasClass('closed')) {
@@ -173,14 +173,31 @@
 
             next: () => {
                 const next = Carousel.currentItem !== carouselItems.length - 1 ? Carousel.currentItem + 1 : 0 ;
-                Carousel.outRight(Carousel.currentItem, next);
+                Carousel.outLeft(Carousel.currentItem, next);
                 Carousel.currentItem = next;
+                console.log(Carousel.currentItem);
+
+                if(Carousel.currentItem == 1) {
+                  $('.carousel-arrow-left').removeClass('disabled');
+                }
+
+                if(Carousel.currentItem == carouselItems.length - 1) {
+                  $('.carousel-arrow-right').addClass('disabled');
+                }
             },
 
             prev: () => {
                 const prev = Carousel.currentItem > 0 ? Carousel.currentItem - 1 : carouselItems.length - 1 ;
-                Carousel.outLeft(Carousel.currentItem, prev);
+                Carousel.outRight(Carousel.currentItem, prev);
                 Carousel.currentItem = prev;
+
+                if(Carousel.currentItem == 0) {
+                  $('.carousel-arrow-left').addClass('disabled');
+                }
+
+                if(Carousel.currentItem == carouselItems.length - 2) {
+                  $('.carousel-arrow-right').removeClass('disabled');
+                }
             }
         }
 
@@ -192,13 +209,13 @@
     //enable swip for change the carousel
     var body = document.querySelector('body');
     var hammertime = new Hammer(body);
-
+    /*
     hammertime.on('swipeleft',function(e) {
-        $('.carousel-arrow-left').click();
+      ($('.carousel-arrow-right').hasClass('disabled')) ? '' : $('.carousel-arrow-right').click() ;
     }).on('swiperight',function(e) {
-        $('.carousel-arrow-right').click();
+      ($('.carousel-arrow-left').hasClass('disabled')) ? '' : $('.carousel-arrow-left').click() ;
     });
-
+    */
 
     /*
       * Resume email send
@@ -244,7 +261,8 @@
 
     }
 
-    $('.news__header-menu-list-item').on('click', function(){
+    //filter post by category
+    $('.news__header-menu-list-item').click(function(){
 
       var category = $(this).text();
 
@@ -272,6 +290,43 @@
       })
 
     });
+
+    //filter by search input
+
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 1000;  //time in ms (5 seconds)
+
+    //on keyup, start the countdown
+    $('.news__menu-search').keyup(function(){
+        clearTimeout(typingTimer);
+        if ($('.news__menu-search').val()) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    });
+
+    //user is "finished typing," do something
+    function doneTyping () {
+      var keyword = $('.news__menu-search').val();
+        
+      $.ajax({
+        type: 'POST',
+        url: '/Server/Freela/bridget/wp-admin/admin-ajax.php',
+        dataType: 'html',
+        data: {
+          action: 'news_search',
+          keyword: keyword,
+        },
+        success: function(res) {
+          $('.news-reload > .news__card').fadeOut(300, function() { $(this).remove(); });
+          $('.news-reload > h4.news__section-title').fadeOut(300, function() { $(this).remove(); });
+          setTimeout(function(){
+            $('.news-reload').append(res).hide().fadeIn(300);
+            $('.news-reload .col-12 .news__section-title').html('Busca por: " ' + keyword + '"').hide().fadeIn(300);
+          }, 250);
+          
+        }
+      });
+    }
 
   });
 
