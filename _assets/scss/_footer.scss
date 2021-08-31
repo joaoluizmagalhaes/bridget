@@ -4,6 +4,10 @@
   padding: 5.3rem 0 4rem;
 }
 
+.footer__logo {
+  margin-bottom: 4rem;
+}
+
 .footer__title {
   font-size: 1.8rem;
   font-weight: 700;
@@ -102,6 +106,16 @@
   text-align: center;
 }
 
+.whats-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 100000;
+  margin: 2rem;
+  max-width: 6rem;
+  max-height: 6rem;
+}
+
 @media (min-width: 769px) {
   .footer {
     padding: 7.3rem 0 4rem;
@@ -112,5 +126,21 @@
 
   .footer__copyright {
     margin: 1rem
+  }
+
+  .whats-fixed {
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    z-index: 100000;
+    max-width: 8rem;
+    max-height: 8rem;
+  }
+
+  .whats-fixed {
+    z-index: 100000;
+    margin: 4rem;
+    max-width: 8rem;
+    max-height: 8rem;
   }
 }

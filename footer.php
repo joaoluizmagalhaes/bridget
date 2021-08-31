@@ -1,6 +1,7 @@
 
 
 </div>
+<a href="https://api.whatsapp.com/send?phone=5511993271622" class="whats-fixed"><img src="<?php bloginfo('template_url'); ?>/_assets/img/Whatsapp_logoAtivo.svg" alt="" class="svg whats-fixed"></a>
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -56,9 +57,9 @@
       <div class="col-12 col-lg-3 offset-lg-1 footer__social">
         <h4 class="footer__title no-after">Redes Sociais</h4>
         <div class="footer__social-icon-wrapper">
-          <a href="https://www.facebook.com" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/face-icon.svg" alt="" class="svg footer__social-icon"></a>
-          <a href="https://www.instagram.com" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/insta-icon.svg" alt="" class="svg footer__social-icon"></a>
-          <a href="https://www.linkedin.com" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/linkedin-icon.svg" alt="" class="svg footer__social-icon"></a>
+          <a href="https://www.facebook.com/bridgetbr" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/face-icon.svg" alt="" class="svg footer__social-icon"></a>
+          <a href="https://www.instagram.com/bridget.brasil" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/insta-icon.svg" alt="" class="svg footer__social-icon"></a>
+          <a href="https://www.linkedin.com/company/bridgetbr" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/linkedin-icon.svg" alt="" class="svg footer__social-icon"></a>
         </div>
       </div>
     </div>
@@ -71,6 +72,8 @@
 
 <?php wp_footer(); ?>
 
-
+<div class="mask-overlay">
+  <div class="lds-default newsletter__msg"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
 </body>
 </html>

@@ -24,6 +24,8 @@ get_header();
 					while ( have_posts() ) {
 						the_post(); 
 						setPostViews(get_the_ID());
+						$category = get_the_category();
+
 						?>
 						<div class="container">
 							<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -35,49 +37,49 @@ get_header();
 								</header>
 								<div class="post__content">
 									<?php
-										the_content();							
+										the_content();						
 									?>
 								</div>
 
 								<footer class="post__share">
 									<p class="post__share-text">Compartilhe:</p> 
-									<img src="<?php bloginfo('template_url'); ?>/_assets/img/facebook-icon.svg" alt="">
-									<img src="<?php bloginfo('template_url'); ?>/_assets/img/linked-icon.svg" alt="">
-									<img src="<?php bloginfo('template_url'); ?>/_assets/img/twitter-icon.svg" alt="">
-									<img src="<?php bloginfo('template_url'); ?>/_assets/img/whatsapp-icon.svg" alt="">
+									<a href="https://www.facebook.com/sharer.php?u=<?= the_permalink();?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/facebook-icon.svg" alt=""></a>
+									<a href="https://www.linkedin.com/shareArticle?url=<?= the_permalink();?>&title=<?= urlencode(get_the_title());?>" target="_blank" ><img src="<?php bloginfo('template_url'); ?>/_assets/img/linked-icon.svg" alt=""></a>
+									<a href="https://twitter.com/intent/tweet?url=<?= the_permalink();?>&text=<?= urlencode(get_the_title());?>&via=bridget" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/twitter-icon.svg" alt=""></a>
+									<a href="whatsapp://send?text=<?= the_permalink();?>" data-action="share/whatsapp/share" target="_blank"><img src="<?php bloginfo('template_url'); ?>/_assets/img/whatsapp-icon.svg" alt=""></a>
 								</footer><!-- .entry-footer -->
 							</article><!-- #post-<?php the_ID(); ?> -->
+							<?php wp_reset_query(); ?>
 							<section>
 								<div class="container">
 									<div class="row news__wrapper">
 										<div class="col-12"><h2 class="news__section-title">Leia também</h2></div>
-										<div class="col-12 col-md-3 news__card">
-											<span class="news__card-tag">Valuation</span>
-											<img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-											<div class="news__card-wrapper">
-												<h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-												<p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-												<a href="#" class="home__section-link">Leia mais</a>
-											</div>
-										</div>
-										<div class="col-12 col-md-3 news__card">
-											<span class="news__card-tag">Valuation</span>
-											<img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-											<div class="news__card-wrapper">
-												<h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-												<p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-												<a href="#" class="home__section-link">Leia mais</a>
-											</div>
-										</div>
-										<div class="col-12 col-md-3 news__card">
-											<span class="news__card-tag">Valuation</span>
-											<img src="<?php bloginfo('template_url'); ?>/_assets/img/news-img.jpg" alt="" class="news__card-img">
-											<div class="news__card-wrapper">
-												<h3 class="news__card-title">Como calcular o valor da sua empresa?</h3>
-												<p class="news__card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-												<a href="#" class="home__section-link">Leia mais</a>
-											</div>
-										</div>
+										<?php  
+
+											$args = array(
+												'post_type'      => 'post',
+												'post_status'    => 'publish',
+												'posts_per_page' => 3,
+												'order'          => 'DESC',
+												'category_name'  => $category[0]->slug,
+												'orderby'        => 'meta_value_num',
+												'meta_key'       => 'post_views_count'
+											);
+
+											$the_query = new WP_Query( $args );
+																
+											//The Loop
+											if ( $the_query->have_posts() ) {
+												while ( $the_query->have_posts() ) {
+													$the_query->the_post(); 
+
+													get_template_part('templates/components/news-card');
+														
+												}
+											} 
+											
+											wp_reset_query(); 
+										?>
 									</div>
 								</div>
 							</section>

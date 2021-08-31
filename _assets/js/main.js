@@ -63,11 +63,11 @@
       e.stopPropagation();
       e.preventDefault();
       if($('.header__menu').hasClass('closed')) {
-        $('.header__menu-icon').attr('src', document.location.origin + '/Server/Freela/bridget/wp-content/themes/bridget/_assets/img/close.svg');
+        $('.header__menu-icon').attr('src', document.location.origin + '/wp-content/themes/bridget/_assets/img/close.svg');
         $('.header__menu').addClass('open').removeClass('closed');
         TweenMax.fromTo($('.header__menu'), 0.6, {x: -100, display: 'none', opacity: 0}, {x:0, display: 'flex', opacity: 1 });
       } else if($('.header__menu').hasClass('open')) {
-        $('.header__menu-icon').attr('src', document.location.origin + '/Server/Freela/bridget/wp-content/themes/bridget/_assets/img/menu-icon.svg');
+        $('.header__menu-icon').attr('src', document.location.origin + '/wp-content/themes/bridget/_assets/img/menu-icon.svg');
         $('.header__menu').addClass('closed').removeClass('open');
         close($('.header__menu'));
       }
@@ -93,7 +93,6 @@
 
     //Creates the home page carousel
     const carouselContainer = document.querySelectorAll('.carousel');
-    console.log(carouselContainer);
     if(carouselContainer) {
         carouselContainer.forEach(function(carousel){
             createCarousel('#' + carousel.id);
@@ -109,6 +108,8 @@
         const prevBtn = document.querySelector(containerId + ' .carousel-arrow-left');
         const bulletsWrapper = document.querySelector(containerId + ' .carousel-bullets-wrapper');
         const totalItems = carouselItems.length;
+
+        
 
         for (var i = 0; i < totalItems; i++) {
             bulletsWrapper.innerHTML += '<div class="carousel-bullets"></div>';
@@ -139,7 +140,7 @@
                 
                 timeLine
                     .to(item, .2, { scale: .9 })
-                    .to(item, .2, { left: '100%' })
+                    .to(item, .2, { left: '150%' })
                     .to(bullets[index], 0.3, {className: '-=active'})
                     .to(bullets[nextIndex], 0.3, {className: '+=active'})
                     .call(Carousel.inLeft, [nextIndex], this, '.2');
@@ -172,17 +173,19 @@
             },
 
             next: () => {
+
                 const next = Carousel.currentItem !== carouselItems.length - 1 ? Carousel.currentItem + 1 : 0 ;
                 Carousel.outLeft(Carousel.currentItem, next);
                 Carousel.currentItem = next;
-                console.log(Carousel.currentItem);
+               
+                console.log(Carousel);
 
                 if(Carousel.currentItem == 1) {
-                  $('.carousel-arrow-left').removeClass('disabled');
+                  $(containerId + ' .carousel-arrow-left').removeClass('disabled');
                 }
 
                 if(Carousel.currentItem == carouselItems.length - 1) {
-                  $('.carousel-arrow-right').addClass('disabled');
+                  $(containerId + ' .carousel-arrow-right').addClass('disabled');
                 }
             },
 
@@ -192,15 +195,16 @@
                 Carousel.currentItem = prev;
 
                 if(Carousel.currentItem == 0) {
-                  $('.carousel-arrow-left').addClass('disabled');
+                  $(containerId + ' .carousel-arrow-left').addClass('disabled');
                 }
 
                 if(Carousel.currentItem == carouselItems.length - 2) {
-                  $('.carousel-arrow-right').removeClass('disabled');
+                  $(containerId + ' .carousel-arrow-right').removeClass('disabled');
                 }
             }
         }
 
+        
           //Events 
           nextBtn.addEventListener('click', Carousel.next);
           prevBtn.addEventListener('click', Carousel.prev);
@@ -263,6 +267,8 @@
 
     //filter post by category
     $('.news__header-menu-list-item').click(function(){
+      
+      $('.mask-overlay').css('visibility','visible').hide().fadeIn(200);
 
       var category = $(this).text();
 
@@ -272,7 +278,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '/Server/Freela/bridget/wp-admin/admin-ajax.php',
+        url: document.location.origin + '/testes/wp-admin/admin-ajax.php',
         dataType: 'html',
         data: {
           action: 'news_filter',
@@ -283,9 +289,9 @@
           setTimeout(function(){
             $('.news-reload').append(res).hide().fadeIn(300);
             $('.news-reload .news__section-title').html(category).hide().fadeIn(300);
+            $('.mask-overlay').css('visibility','hidden').fadeOut(400);
           }, 250);
 
-          
         }
       })
 
@@ -310,7 +316,7 @@
         
       $.ajax({
         type: 'POST',
-        url: '/Server/Freela/bridget/wp-admin/admin-ajax.php',
+        url: document.location.origin + '/wp-admin/admin-ajax.php',
         dataType: 'html',
         data: {
           action: 'news_search',

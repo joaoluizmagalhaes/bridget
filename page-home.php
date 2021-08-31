@@ -206,68 +206,61 @@
                                     <?php } ?>
                                 <?php wp_reset_query(); ?>
                              </div>
-                            <a href="http://localhost:8080/Server/Freela/bridget/noticias/" class="btn btn__secondary">Ver mais notícias</a>
+                            <a href="<?php home_url() ?>/noticias/" class="btn btn__secondary">Ver mais notícias</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!--googleon: all-->
-        <section class="home__section home__search home__news d-md-none">
+        <section class="home__section home__search home__news  d-md-none">
             <div class="container">
                 <div class="row g-0">
                     <div class="home__section-wrapper">
                         <h2 class="home__section-title">Últimas notícias</h2>
-                        <div class="home__section-carousel carousel" id="carousel-news">
-                            <div class="home__section-carousel-wrapper" >
-                                <div class="home__section-carousel-card-news carousel__item">
-                                    <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-1.jpg" alt="" class="home__section-carousel-card-img-news">
-                                    <div class="home__section-carousel-card-news-wrapper">
-                                        <span class="home__section-carousel-card-category">Valuation</span>
-                                        <h3 class="home__section-carousel-card-title">Como calcular o valor da sua empresa?</h3>
-                                        <p class="home__section-carousel-card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-                                        <a href="#" class="home__section-link">Leia mais <img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-link.svg" class="svg home__section-link-icon"></a>
-                                    </div>
-                                </div>
-                                <div class="home__section-carousel-card-news carousel__item">
-                                    <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-2.jpg" alt="" class="home__section-carousel-card-img-news">
-                                    <div class="home__section-carousel-card-news-wrapper">
-                                        <span class="home__section-carousel-card-category">Valuation</span>
-                                        <h3 class="home__section-carousel-card-title">Como calcular o valor da sua empresa?</h3>
-                                        <p class="home__section-carousel-card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-                                        <a href="#" class="home__section-link">Leia mais <img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-link.svg" class="svg home__section-link-icon"></a>
-                                    </div>
-                                </div>
-                                <div class="home__section-carousel-card-news carousel__item">
-                                    <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-3.jpg" alt="" class="home__section-carousel-card-img-news">
-                                    <div class="home__section-carousel-card-news-wrapper">
-                                        <span class="home__section-carousel-card-category">Valuation</span>
-                                        <h3 class="home__section-carousel-card-title">Como calcular o valor da sua empresa?</h3>
-                                        <p class="home__section-carousel-card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-                                        <a href="#" class="home__section-link">Leia mais <img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-link.svg" class="svg home__section-link-icon"></a>
-                                    </div>
-                                </div>
-                                <div class="home__section-carousel-card-news carousel__item">
-                                    <img src="<?php bloginfo('template_url'); ?>/_assets/img/news-4.jpg" alt="" class="home__section-carousel-card-img-news">
-                                    <div class="home__section-carousel-card-news-wrapper">
-                                        <span class="home__section-carousel-card-category">Valuation</span>
-                                        <h3 class="home__section-carousel-card-title">Como calcular o valor da sua empresa?</h3>
-                                        <p class="home__section-carousel-card-text">Aqui vai um breve resumo da matéria para aguçar a curiosidade do leitor e incentivá-lo a clicar no botão para continuar lendo.</p>
-                                        <a href="#" class="home__section-link">Leia mais <img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-link.svg" class="svg home__section-link-icon"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="home__section-carousel-controls">
+                        <div class="home__section-carousel carousel"  id="carousel-news">
+                            <div class="home__section-carousel-wrapper row g-0" >
+                                <?php 
+                                    $args = array(
+                                        'post_type'      => 'post',
+                                        'post_status'    => 'publish',
+                                        'posts_per_page' => 4,
+                                        'order'          => 'DESC',
+                                        'orderby'        => 'ID',
+                                    );
+
+                                    $the_query = new WP_Query( $args );
+
+                                    //The Loop
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) {
+                                            $the_query->the_post(); ?>
+
+                                            <div class="home__section-carousel-card-news carousel__item">
+                                                <img src="<?= get_the_post_thumbnail_url(); ?>" alt="" class="home__section-carousel-card-img-news">
+                                                <div class="home__section-carousel-card-news-wrapper">
+                                                    <span class="home__section-carousel-card-category"><?= get_the_category()[0]->name; ?></span>
+                                                    <h3 class="home__section-carousel-card-title"><?php the_title(); ?></h3>
+                                                    <p class="home__section-carousel-card-text"><?= get_the_excerpt(); ?></p>
+                                                    <a href="<?php the_permalink(); ?>" class="home__section-link">Leia mais</a>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    <?php } ?>
+                                <?php wp_reset_query(); ?>
+                             </div>
+                             <div class="home__section-carousel-controls">
                                 <div class="carousel-arrow-left disabled"><img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-left.svg" alt="" class=" svg"></div>
                                 <div class="carousel-bullets-wrapper"></div>
                                 <div class="carousel-arrow-right"><img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-right.svg" alt="" class=" svg"></div>
                             </div>
-                            <a href="http://localhost:8080/Server/Freela/bridget/noticias/" class="btn btn__secondary">Ver mais notícias</a>
+                            <a href="<?php home_url() ?>/noticias/" class="btn btn__secondary">Ver mais notícias</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        
         <section class="home__section home__contact">
             <div class="container">
                 <div class="row g-0">

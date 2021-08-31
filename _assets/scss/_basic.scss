@@ -21,6 +21,25 @@ body {
   right: 0;
 }
 
+.mask-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color: $white, $alpha: 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include transition(all);
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  visibility: hidden;
+
+  .lds-default {
+    display: block;
+  }
+}
+
 .primary {
   color: $primary
 }
