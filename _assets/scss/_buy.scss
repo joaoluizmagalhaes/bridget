@@ -1,0 +1,105 @@
+.buy {
+  .searchform {
+    .home__search-input-wrapper {
+      border: 0.1rem solid $gray;
+      width: 100%;
+    }
+    
+    .btn__secondary {
+      display: none;
+    }
+  }
+}
+
+.buy__list-header {
+  margin: 5rem 0; 
+}
+
+.buy__title {
+  color: $primary;
+  font-size: 2.6rem;
+  font-weight: 700;
+
+}
+
+.buy__subtitle {
+  color: $primary;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.mapa {
+  display: block;
+  max-width: 100%;
+}
+
+.buy__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0.1rem solid $gray;
+  max-width: 32.3rem;
+  height: 39.9rem;
+  padding: 0;
+  margin: 0 auto 3rem;
+
+  img {
+    width: 100%;
+  }
+
+  .card-wrapper {
+    padding: 2.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 20.2rem;
+    position: relative;
+  }
+
+  .card-category {
+    color: $secondary;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .card-title {
+    color: $primary;
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .card-text {
+    font-size: 1.5rem;
+    color: $text-gray;
+    margin: 0;
+  }
+
+  .card-favorite {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+  }
+}
+
+.buy__list-footer {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-footer-text {
+  color: $primary;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  .buy__title {color: $primary;
+    font-size: 3.5rem;
+  
+  }
+}

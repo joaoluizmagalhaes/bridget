@@ -1,0 +1,114 @@
+.company {
+
+}
+
+.company__header {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 8rem 0 5rem;
+}
+
+.company__title {
+  font-size: 2.6rem;
+  color: $primary;
+  font-weight: 700;
+}
+
+.company__gallery-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.company__gallery-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 44rem;
+  margin: auto 0;
+  justify-self: center;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.price {
+  font-size: 2.6rem;
+  color: $primary;
+  font-weight: 700;
+}
+
+.social-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0 2rem;
+  cursor: pointer;
+
+  .card-favorite {
+    max-width: 2.6rem;
+    cursor: pointer;
+  }
+
+  .text {
+    color: $primary;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+  }
+}
+
+.content__body {
+  .subtitle {
+    color: $primary;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .text {
+    color: $dark-gray;
+    font-size: 1.6rem;
+  }
+
+  .code {
+    font-size: 2.1rem;
+    color: $primary;
+  }
+}
+
+@media (min-width: 769px) {
+  .company__title {
+    font-size: 3.5rem;
+  }
+
+  .price {
+    font-size: 3.5rem;
+  }
+  
+}
