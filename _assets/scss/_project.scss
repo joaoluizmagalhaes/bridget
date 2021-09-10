@@ -28,11 +28,11 @@
   }
 
   .about__section-subtitle {
-    margin: 0 1.5rem 3rem;
+    margin: 0 0 3rem;
   }
 
   .about__section-text {
-    margin: 0 1.5rem 4rem;
+    margin: 0 0 4rem;
   }
 }
 
@@ -93,7 +93,7 @@
 
 .project__do {
   .about__section-subtitle {
-    margin: 0 0 6rem 0;
+    margin: 0 0 6rem 6rem;
   }
 }
 
@@ -102,9 +102,27 @@
     .main-title {
       margin-bottom: 5rem;
     }
+
+    .home__contact-whats {
+      justify-content: flex-start;
+      text-align: left;
+      align-items: flex-start;
+    
+      .home__section-text {
+        text-align: left;
+      }
+    }
+    
+  }
+  .project__do { 
+    padding-bottom: 0 !important;
   }
 
   .project__section-wrapper {
+    &:nth-child(1) {
+      padding: 0 0 0 7.4rem;
+    }
+    
     .about__section-subtitle {
       margin: -1.5rem 0 3rem;
     }

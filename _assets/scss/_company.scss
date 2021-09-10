@@ -23,6 +23,35 @@
   align-items: center;
   width: 100%;
 
+  .slick-arrow {
+    width: 5rem;
+    height: 5rem;
+    @include transition(all);
+
+    &::before {
+      font-size: 5rem;
+    }
+  }
+
+  .slick-prev {
+    left: 1rem;
+    z-index: 100000;
+
+    &::before {
+      content: url('../img/slider-arrow-left.svg');
+    }
+  }
+
+  .slick-next {
+    right: 1rem;
+    z-index: 100000;
+
+    &::before {
+      content: url('../img/slider-arrow-right.svg');
+    }
+  }
+
+
   img {
     width: 100%;
     display: block;
@@ -30,17 +59,52 @@
 }
 
 .company__gallery-icons {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 44rem;
-  margin: auto 0;
-  justify-self: center;
+  
+  min-height: 4rem;
+  margin: 2rem 0;
 
+  .slick-list {
+    overflow: hidden;
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+ 
   img {
     display: block;
-    max-width: 100%;
+    max-width: 5rem;
+  }
+
+  .slick-prev{
+    &::before {
+      content: url('../img/slider-icon-left.svg');
+    }
+
+    left: 0;
+    
+
+  }
+  .slick-next{
+    &::before {
+      content: url('../img/slider-icon-right.svg');
+    }
+    
+    right: 0;
+  }
+
+  .slick-slide {
+    margin: 0.5rem 0;
+
+    img {
+      @include transition(all);
+
+      opacity: 0.5;
+    }
+
+    &.slick-current {
+      img {
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -85,6 +149,8 @@
 }
 
 .content__body {
+  margin-bottom: 5rem;
+
   .subtitle {
     color: $primary;
     font-size: 1.6rem;
@@ -99,16 +165,171 @@
   .code {
     font-size: 2.1rem;
     color: $primary;
+    margin: 2rem 0;
   }
 }
 
+.company__contact {
+  margin-bottom: 5rem;
+}
+
+.company__contact-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .title {
+    font-size: 2.6rem;
+    color: $secondary;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+    color: $primary;
+    margin: 0;
+  }
+}
+
+.company__related-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5rem 0;
+}
+
+.company__title {
+  text-align: center;
+}
+
 @media (min-width: 769px) {
+
+  .company__gallery-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+    .slick-arrow {
+      width: 5rem;
+      height: 5rem;
+      @include transition(all);
+  
+      &::before {
+        font-size: 5rem;
+      }
+    }
+  
+    .slick-prev {
+      left: 2rem;
+      z-index: 100000;
+  
+      &::before {
+        content: url('../img/slider-arrow-left.svg');
+      }
+    }
+  
+    .slick-next {
+      right: 2rem;
+      z-index: 100000;
+  
+      &::before {
+        content: url('../img/slider-arrow-right.svg');
+      }
+    }
+  
+  
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .company__gallery-icons {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 48.7rem;
+    margin: auto 0;
+    justify-self: center;
+  
+    .slick-prev{
+      &::before {
+        content: url('../img/slider-arrow-up.svg');
+      }
+      position: relative;
+      top: unset;
+      left: unset;
+  
+    }
+    .slick-next{
+      &::before {
+        content: url('../img/slider-arrow-down.svg');
+      }
+      position: relative;
+      bottom: unset;
+      top: 1rem;
+      right: unset;
+    }
+  
+    .slick-slide {
+      margin: 0.5rem 0;
+      img {
+        @include transition(all);
+  
+        opacity: 0.5;
+      }
+  
+      &.slick-current {
+        img {
+          opacity: 1;
+        }
+      }
+    }
+  
+    img {
+      display: block;
+      max-width: 100%;
+    }
+  }
+  
   .company__title {
     font-size: 3.5rem;
   }
 
   .price {
     font-size: 3.5rem;
+  }
+
+  .company__contact {
+
+    .btn__form {
+      margin: 0;
+    }
+  }
+
+  .company__contact-header {
+    
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 4rem;
+  
+    .title {
+      font-size: 3.5rem;
+      
+    }
+  
+    .subtitle {
+      font-size: 1.6rem;
+      
+    }
   }
   
 }

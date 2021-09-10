@@ -51,6 +51,8 @@
 
 .home__section-icon {
   margin: 0 2.2rem 0 0;
+  width: 7rem;
+  height: 7rem;
 }
 
 .home__section-item {
@@ -58,6 +60,11 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+
+  .home__text {
+    color: $dark-gray;
+    font-size: 2rem;
+  }
 }
 
 .home__section-wrapper {
@@ -494,7 +501,7 @@
   }
 
   .home__section-icon {
-    margin: 0;
+    margin: 0 0 1.5rem;
   }
   .home__section-carousel-wrapper {
     justify-content: space-around;
