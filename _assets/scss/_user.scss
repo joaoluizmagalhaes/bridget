@@ -1,0 +1,35 @@
+.user__create-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 33.8rem;
+  margin: 8.2rem auto;
+  justify-content: center;
+  align-items: center;
+
+  .acf-form {
+    width: 100%;
+  }
+
+  .acf-label label {
+    color: $primary;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .acf-field {
+    border-top: none !important;
+  }
+
+  .acf-input-wrap input[type="text"],
+  .acf-input-wrap input[type="email"],
+  .acf-input-wrap input[type="password"] {
+    width: 100%;
+    height: 4.2rem;
+    margin: 0.8rem 0 1.2rem;
+    padding: 1rem;
+  }
+
+  #message {
+    display: none;
+  }
+}
