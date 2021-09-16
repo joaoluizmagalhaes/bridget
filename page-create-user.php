@@ -3,10 +3,12 @@
     get_header();
 
     $settings = array(
+      'submit_value'	=> 'Cadastrar',
+      'id'				    => 'register_new_user',
+      'post_id'			  => 'new_user',
       'field_groups' => array(
         'key' => 'group_614149e28a3e3'
       ),
-      'submit_value'	=> 'Cadastrar'
     )
 
 ?>

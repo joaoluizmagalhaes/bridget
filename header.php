@@ -51,8 +51,23 @@
                             );
                             $menu_wp = wp_nav_menu($argsBold); 
                         ?>
-                        
-                        <button class="btn btn__primary btn__login"><img src="<?php bloginfo('template_url'); ?>/_assets/img/login-icon.svg" alt="login" class="btn__icon svg">Entrar</button>
+                        <?php 
+                            if(!is_user_logged_in()) { ?>
+                                <button class="btn btn__primary btn__login"><img src="<?php bloginfo('template_url'); ?>/_assets/img/login-icon.svg" alt="login" class="btn__icon svg">Entrar</button>
+                           <?php }
+                        ?>
+                    </nav>
+                    <nav class="header__login-menu closed">
+                        <?php 
+                            if(!is_user_logged_in()) {
+                                $argsBold = array(
+                                    'menu'       => 'Header - Login',
+                                    'menu_class' => 'header__login-menu-list',
+                                    'container'  => 'ul',
+                                );
+                                $menu_wp = wp_nav_menu($argsBold); 
+                            }
+                        ?>
                     </nav>
                     
                 </div>
