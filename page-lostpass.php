@@ -1,4 +1,4 @@
-<?php /* Template Name: Login*/ 
+<?php /* Template Name: Recuperar Senha*/ 
     get_header();
 
     $login  = (isset($_GET['login']) ) ? $_GET['login'] : 0;
@@ -15,27 +15,28 @@
           <div class="col-12 ">
             <div class="login__wrapper">
               <img src="<?php bloginfo('template_url'); ?>/_assets/img/logo-bridget.svg" alt="" class="login__form-logo">
-              <h2 class="login__form-title">Acesse sua conta</h2>
+              <h2 class="login__form-title">Recupere sua conta</h2>
               <?php 
-                if(isset($_GET['login']) && isset($_GET['reason'])){ ?>
+                if( isset($_GET['errors'])){ ?>
                   <div class="login__form-error">
-                    <p class="text"><?= esc_html($_GET['reason']) ?></p>
+                    <p class="text"><?= esc_html($_GET['errors']) ?></p>
+                  </div>
+                <?php }
+
+                if( isset($_GET['confirm'])){ ?>
+                  <div class="login__form-confirm">
+                    <p class="text"><?= esc_html($_GET['confirm']) ?></p>
                   </div>
                 <?php }
               ?>
-              <form action="<?= esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post" class="login__form">
+              <form action="<?= esc_url( wp_lostpassword_url()); ?>" method="post" class="login__form">
                 <label for="" class="login__form-label">E-mail</label>
-                <input type="text" class="login__form-input" name="log" id="<?= __('user_login') ; ?>">
-                <label for="" class="login__form-label label__lost-pass">Senha <a href="<?= esc_url(home_url()); ?>/recuperar-senha" class="login__link">Esqueceu sua senha?</a></label>
-                <input type="password" class="login__form-input last" name="pwd" id="<?= __('user_pass'); ?>">
-                <input type="submit" class="btn btn__secondary btn__login-form" value="Entrar">
+                <input type="text" class="login__form-input" name="user_login" id="<?= __('user_login') ; ?>">
+                
+                <input type="submit" class="btn btn__secondary btn__login-form" value="Enviar">
                 <input type="hidden" name="redirect_to" value="<?= esc_url(get_home_url('/')); ?>'" />
               </form>
-              <p class="text">ou</p>
-              <div class="login__social-wrapper">
-                <a href="http://bridget.com.br/testes/wp-login.php?loginSocial=facebook" data-plugin="nsl" data-action="connect" data-redirect="current" data-provider="facebook" data-popupwidth="475" data-popupheight="175" class="btn btn__face">Facebook</a>
-                <a href="http://bridget.com.br/testes/wp-login.php?loginSocial=google" data-plugin="nsl" data-action="connect" data-redirect="current" data-provider="google" data-popupwidth="600" data-popupheight="600" class="btn btn__google">Google</a>
-              </div>
+              
               <p class="text">Não tem uma conta? <a href="<?= esc_url(home_url()); ?>/criar-usuario/" class="login__link">Cadastre-se</a></p>
             </div>
             <div class="login__legal-wrapper">

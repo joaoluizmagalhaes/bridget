@@ -54,10 +54,14 @@
                         <?php 
                             if(!is_user_logged_in()) { ?>
                                 <button class="btn btn__primary btn__login"><img src="<?php bloginfo('template_url'); ?>/_assets/img/login-icon.svg" alt="login" class="btn__icon svg">Entrar</button>
+                           <?php } else { 
+                                $user_meta = get_user_meta(get_current_user_id() );  
+                            ?>
+                               <button class="btn__login btn__link">Olá, <?= esc_html($user_meta['first_name'][0]); ?></button>
                            <?php }
                         ?>
                     </nav>
-                    <nav class="header__login-menu closed">
+                    <nav class="header__login-menu closed logged">
                         <?php 
                             if(!is_user_logged_in()) {
                                 $argsBold = array(
@@ -66,7 +70,9 @@
                                     'container'  => 'ul',
                                 );
                                 $menu_wp = wp_nav_menu($argsBold); 
-                            }
+                            } else { ?>
+                                <?= get_template_part('/templates/components/account-menu') ?>
+                            <?php }
                         ?>
                     </nav>
                     

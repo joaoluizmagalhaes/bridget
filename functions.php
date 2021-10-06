@@ -27,9 +27,12 @@
         wp_enqueue_script('hammer-js');
         wp_register_script('Slick-js', get_template_directory_uri().'/_assets/vendor/slick/slick.min.js', array('jquery'),'1.0', true);
 		wp_enqueue_script('Slick-js');
+        wp_register_script('jQuery-mask', get_template_directory_uri().'/_assets/vendor/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js', array('jquery'),'1.0', true);
+		wp_enqueue_script('jQuery-mask');
         wp_register_script('bridget-js', get_template_directory_uri().'/_assets/js/main.js', array('jquery'),'1.0', true);
 		wp_enqueue_script('bridget-js');
         
+
         if(is_singular('company')) {
 
             wp_register_script('bridget-company-js', get_template_directory_uri().'/_assets/js/single-company.js', array('jquery'),'1.0', true);
@@ -94,6 +97,12 @@
         remove_post_type_support( $post_type, 'editor');
     }
 
+    add_action( 'wp_logout', 'redirect_after_logout');
+    function redirect_after_logout(){
+        wp_redirect( home_url() );
+        exit();
+    }
+
    /*
     * Set post views count using post meta
     */
@@ -109,4 +118,60 @@
             update_post_meta($postID, $countKey, $count);
         }
     }
+    
+    add_filter('login_redirect', 'my_login_redirect', 10, 3);
+    function my_login_redirect($redirect_to, $requested_redirect_to, $user) {
+        if (is_wp_error($user)) {
+            //Login failed, find out why...
+            $error_types = array_keys($user->errors);
+            //Error type seems to be empty if none of the fields are filled out
+            $error_type = 'both_empty';
+            //Otherwise just get the first error (as far as I know there
+            //will only ever be one)
+
+            if (is_array($error_types) && !empty($error_types)) {
+                $error_type = strip_tags ($user->errors[$error_types[0]][0]);
+            }
+            wp_redirect( home_url() . "/login?login=failed&reason=" . $error_type ); 
+            exit;
+        } else {
+            //Login OK - redirect to another page?
+            return home_url();
+        }
+    }
+
+    add_action( 'login_form_lostpassword', 'do_password_lost'  );
+
+    /**
+     * Initiates password reset.
+     */
+    function do_password_lost() {
+        if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+            $errors = retrieve_password();
+
+            if ( is_wp_error( $errors ) ) {
+                // Errors found
+
+                foreach($errors->errors as $value){
+                    $error_msg = $value[0];
+                }
+               
+                wp_redirect( home_url() . "/recuperar-senha?errors=" . strip_tags ($error_msg ));
+                //$redirect_url = add_query_arg( 'errors', join( ',', $errors->get_error_codes() ), $redirect_url );
+            } else {
+                // Email sent
+                
+                $confirm_msg = 'Verifique no seu e-mail o link de confirmação!';
+
+                wp_redirect( home_url() . "/recuperar-senha?confirm=" . $confirm_msg);
+                //$redirect_url = home_url( 'recuperar-senha' );
+                //$redirect_url = add_query_arg( 'checkemail', 'confirm', $redirect_url );
+            }
+
+            wp_redirect( $redirect_url );
+            exit;
+        }
+    }
+    
+    
     

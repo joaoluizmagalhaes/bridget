@@ -2,6 +2,7 @@
     get_header();
 
     $customFields = get_fields();
+
 ?>
 
 <div id="primary" class="content-area">
@@ -9,40 +10,24 @@
     <section class="company">
       <div class="container">
         <div class="company__header">
-          <h2 class="company__title">Clínica odontológica Odonto Company</h2>
+          <h2 class="company__title"><?= esc_html($customFields['dados_do_anuncio']['nome_do_anuncio']) ?></h2>
         </div>
         <div class="company__gallery">
           <div class="row ">
             <div class="offset-md-2 col-12 col-md-7 p-0 p-md-3">
               <div class="company__gallery-main">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
+                <?php foreach ($customFields['dados_do_anuncio']['imagens'] as $imagem) { ?>
+                  <img src="<?= esc_url($imagem['imagem']) ?>" alt="">
+                <?php } ?>
               </div>
             </div>
             <div class="col-12 col-md-1">
               <div class="company__gallery-icons">
-                <div>  
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                </div>
-                <div>
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                </div>
-                  <div>
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                </div>
-                  <div>
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                </div>
-                  <div>
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                </div>
-                  <div>
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/clinica.jpg" alt="">
-                </div>
+                <?php foreach ($customFields['dados_do_anuncio']['imagens'] as $imagem) { ?>
+                  <div> 
+                    <img src="<?= esc_url($imagem['imagem']) ?>" alt="">
+                  </div>
+                <?php } ?>
               </div>
             </div>
           </div>
@@ -51,7 +36,7 @@
           <div class="row">
             <div class="offset-md-2 col-12 col-md-7">
               <div class="content__header">
-                <p class="price">R$ 80.000</p>
+                <p class="price">R$ <?= esc_html($customFields['dados_do_anuncio']['valor_da_venda']) ?></p>
                 <div class="social">
                   <div class="social-item"><img src="<?php bloginfo('template_url'); ?>/_assets/img/heart.svg" alt="" class="svg card-favorite"><span class="text d-none d-md-block">Favoritar</span></div>
                   <div class="social-item"><img src="<?php bloginfo('template_url'); ?>/_assets/img/share-icon.svg" alt="" class="svg card-favorite"><span class="text d-none d-md-block">Compartilhar</span></div>
@@ -63,30 +48,30 @@
                 <div class="row">
                   <div class="col-12 col-md-5">
                     <h4 class="subtitle">Faturamento mensal</h4>
-                    <p class="text">R$ 50.000</p>
+                    <p class="text">R$ <?= esc_html($customFields['dados_do_anuncio']['faturamento_anual']) ?></p>
                   </div>
                   <div class="col-12 col-md-5">
                     <h4 class="subtitle">Categoria</h4>
-                    <p class="text">Vestuário</p>
+                    <p class="text"><?= esc_html($customFields['dados_basicos']['segmento']) ?></p>
                   </div>
                   <div class="col-12 col-md-5">
                     <h4 class="subtitle">Lucro líquido mensal</h4>
-                    <p class="text">R$ 18.000</p>
+                    <p class="text">R$ <?= esc_html($customFields['dados_do_anuncio']['lucro_liquido_anual']) ?></p>
                   </div>
                   <div class="col-12 col-md-5">
                     <h4 class="subtitle">Localização</h4>
-                    <p class="text">São Bernardo do Campo</p>
+                    <p class="text"><?= esc_html($customFields['dados_do_anuncio']['cidade']) ?></p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <p class="code">Código 653</p>
+                    <p class="code">Código <?= get_the_ID(); ?></p>
                     </div>
                 </div>
                 <div class="row">
                   <div class="col">
                     <h4 class="subtitle">Descrição</h4>
-                    <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et rhoncus tortor. Phasellus sodales risus urna, quis luctus leo ullamcorper a. In quis dolor magna. Mauris fringilla ex ante, ac rutrum lacus laoreet dignissim. Morbi eu ipsum ac ante lobortis cursus quis et nisi. Aliquam felis sem, cursus et odio sed, commodo tincidunt mi. Aenean volutpat pretium tincidunt. Pellentesque tincidunt, augue eu pharetra sollicitudin, metus nunc luctus leo, eu dictum nibh velit ut odio. Pellentesque nulla mauris, pharetra at volutpat varius, porta nec ligula. Morbi tincidunt neque quis lorem posuere consequat. Sed porta, ipsum sit amet tincidunt accumsan, ante neque commodo lectus, ac pulvinar velit magna et diam. Donec elementum sodales vulputate. Vestibulum est nisi, dapibus tempus sem vel, lacinia consequat arcu.</p>
+                    <p class="text"><?= esc_html($customFields['dados_do_anuncio']['descricao']) ?></p>
                   </div>
                 </div>
               </div>

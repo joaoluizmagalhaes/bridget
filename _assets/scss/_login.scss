@@ -84,3 +84,29 @@
     margin-bottom: 2rem;
   }
 }
+
+.login__form-error {
+  width: 100%;
+  border: 0.1rem solid $gray;
+  border-radius: 0.3rem;
+  border-left: 0.3rem solid $secondary;
+  padding: 1rem;
+  margin: 1rem 0;
+  
+  .text {
+    font-size: 1.2rem;
+  }
+}
+
+.login__form-confirm {
+  width: 100%;
+  border: 0.1rem solid $gray;
+  border-radius: 0.3rem;
+  border-left: 0.3rem solid $primary;
+  padding: 1rem;
+  margin: 1rem 0;
+  
+  .text {
+    font-size: 1.2rem;
+  }
+}

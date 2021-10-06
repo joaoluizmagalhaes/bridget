@@ -90,7 +90,7 @@
 }
 
 .header__login-menu {
-  width: 15rem;
+  min-width: 15rem;
   min-height: 11.8rem;
   padding: 1.8rem 1.6rem 0 0;
   position: absolute;
@@ -192,6 +192,10 @@
     top: calc(100% + 0.1rem);
     right: 0;
     left: unset;
+
+    &.logged {
+      right: -0.8rem;
+    }
   }
 }
 

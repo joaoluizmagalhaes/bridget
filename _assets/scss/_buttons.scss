@@ -89,6 +89,41 @@
   }
 }
 
+.btn__link {
+  font-size: 1.4rem;
+  color: $primary;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  @include transition(all);
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $secondary;
+
+    &::after {
+      background-image: url('../img/icon-down-2.svg');
+    }
+  }
+
+  &::after {
+    @include transition(all);
+    content: '';
+    background-image: url('../img/icon-down.svg');
+    background-repeat: no-repeat;
+    position: absolute;
+    top: calc(50% - 0.2rem);
+    right: -1rem;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+}
+
 .btn__google {
   background-color: $blue-google;
   min-width: 16rem;
