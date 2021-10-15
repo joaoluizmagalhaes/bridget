@@ -36,6 +36,11 @@
           </div>
           <div class="col-12 col-md-9">
             <div class="user__create-wrapper">
+              <?php if( isset($_GET['success'])){ ?>
+                <div class="login__form-confirm">
+                  <p class="text"><?= esc_html($_GET['success']) ?></p>
+                </div>
+              <?php } ?>
               <?php acf_form($settings); ?>
             </div>
           </div>

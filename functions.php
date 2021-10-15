@@ -136,7 +136,7 @@
             exit;
         } else {
             //Login OK - redirect to another page?
-            return home_url();
+            return home_url() . "/minha-conta";
         }
     }
 
@@ -173,5 +173,17 @@
         }
     }
     
+    add_filter('template_include', 'template_chooser');
+    function template_chooser($template) {    
+        global $wp_query;   
+
+        $post_type = get_query_var('post_type');   
+        
+        if( $wp_query->is_search && $post_type == 'company' ) {
+            return locate_template('archive-company.php');  //  redirect to archive-search.php
+        }   
+        
+        return $template;   
+    }
     
     

@@ -7,3 +7,5 @@
 	require_once 'create-user/create-user.php';
 	require_once 'create-user/edit-user.php';
 	require_once 'user-roles/user-roles.php';
+	require_once 'create-add/create-add.php';
+	require_once 'custom-search-postmeta/custom-search-postmeta.php';

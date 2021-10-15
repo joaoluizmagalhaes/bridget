@@ -330,7 +330,7 @@
         
       $.ajax({
         type: 'POST',
-        url: document.location.origin + '/wp-admin/admin-ajax.php',
+        url: document.location.origin + '/testes/wp-admin/admin-ajax.php',
         dataType: 'html',
         data: {
           action: 'news_search',
@@ -346,6 +346,12 @@
           
         }
       });
+    }
+
+    if($("#acf-field_614152be36a37").val().length <= 11){
+      $("#acf-field_614152be36a37").mask("999.999.999-99");
+    } else {
+      $("#acf-field_614152be36a37").mask("99.999.999/9999-99");
     }
 
 
@@ -406,7 +412,6 @@
       } catch (e) {}
   
       var tamanho = $("#acf-field_6141540336a3c").val().length;
-      console.log(tamanho);
   
       if(tamanho < 10){
           $("#acf-field_6141540336a3c").mask("(99) 9999-9999");

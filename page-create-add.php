@@ -10,13 +10,20 @@
   
     $user_meta = get_user_meta(get_current_user_id());
 
+    $redirect_url =  home_url() . '/meus-anuncios/';
+
     $settings = array(
       'submit_value'	=> 'Cadastrar anúncio',
       'id'				    => 'register_new_add',
-      'post_id'			  => 'new_add_post',
-      'field_groups' => array(
-        'key' => 'group_615cd67d36416'
+      'post_id'			  => 'new_post',
+      'field_groups'  => array(
+        'key'         => 'group_615cd67d36416'
       ),
+      'new_post'      => array(
+        'post_type'   => 'company',
+        'post_status' => 'publish'
+      ),
+      'return'        => $redirect_url
     )
 
 ?>

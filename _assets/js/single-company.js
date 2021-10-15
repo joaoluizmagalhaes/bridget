@@ -3,8 +3,6 @@
   $(document).ready(function() {
 
     var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-
-    console.log($(window).width())
     
     $('.company__gallery-main').slick({
       slidesToShow: 1,
@@ -41,6 +39,7 @@
       });
     }
 
+    $('.home__contact-form-textarea').val('Olá, tenho interesse neste anúncio: ' + $('.company__header .company__title').text() + ' - ' + $('.code').text());
 
   })
 

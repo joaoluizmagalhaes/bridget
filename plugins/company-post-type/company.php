@@ -23,6 +23,7 @@
 	        'menu_position'      => 4,
 	        'public'             => true,
 	        'has_archive'        => true,
+					'rewrite' 					 => array('slug' => 'empresas'),
 	        'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
 	        'show_ui'            => true,
 	    );

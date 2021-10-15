@@ -1,4 +1,4 @@
-<?php /* Template Name: Comprar */ 
+<?php /* Template Name: Busca empresas */ 
     get_header();
 
     $args = array(
@@ -7,12 +7,12 @@
       'posts_per_page' => 12,
       'order'          => 'DESC',
       'orderby'        => 'date',
-    );
+      's'              => $s
+  );
 
-    $the_query = new WP_Query( $args );
+  $the_query = new WP_Query( $args );
 
-    $count = $the_query->found_posts;
-    
+  $count = $the_query->found_posts;
 ?>
 
 <div id="primary" class="content-area">
@@ -24,28 +24,27 @@
             <div class="buy__list-header">
               <h3 class="buy__title">Empresas à venda</h3>
               <?php get_template_part('/templates/components/searchform-company'); ?>
-              <p class="buy__subtitle"> <?= esc_html($count); ?> resultados encontrados</p>
+              <p class="buy__subtitle"> <?= esc_html($count); ?> <?= ($count <= 1) ? 'resultado de busca encontrado' : 'resultados de busca encontrados' ;?></p>
             </div>
             <div class="row">
-            <?php 
-                
+            <?php
+                  
 
-                //The Loop
-                if ( $the_query->have_posts() ) {
-                    while ( $the_query->have_posts() ) {
-                        $the_query->the_post(); 
-                        $customFields = get_fields();
+                  //The Loop
+                  if ( $the_query->have_posts() ) {
+                      while ( $the_query->have_posts() ) {
+                          $the_query->the_post(); 
+                          $customFields = get_fields();
 
-                        $classes = array(
-                          'search__article',
-                          'col-12',
-                          'col-md-6',
-                          'buy__card'
-                        )
-                        
-                        ?>
+                          $classes = array(
+                            'search__article',
+                            'col-12',
+                            'col-md-6',
+                            'buy__card'
+                          );
                           
-                            <article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
+                          ?>
+                          <article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
                               <a href="<?= esc_url(the_permalink()); ?>">
                                 <img src="<?= get_the_post_thumbnail_url(); ?>" alt="">
                                 <div class="card-wrapper">
@@ -58,15 +57,14 @@
                                 </div>
                               </a>
                             </article>
-                          
-                    
-                    <?php } ?>
-                <?php } ?>
+                      <?php } ?>
+                  <?php } ?>
+
             
             </div>
             <div class="buy__list-footer">
               <p class="list-footer-text">Precisa de ajuda para encontrar a empresa ideal pra você? <br>Nossa equipe te dá todo o suporte necessário.</p>
-              <a href="<?= esc_url( home_url( '/contato' ) ) ?>" class="btn btn__secondary">Entre em contato</a>
+              <button class="btn btn__secondary">Entre em contato</button>
             </div>
           </div>
           <!--

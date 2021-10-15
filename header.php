@@ -69,8 +69,8 @@
                                     'menu_class' => 'header__login-menu-list',
                                     'container'  => 'ul',
                                 );
-                                $menu_wp = wp_nav_menu($argsBold); 
-                            } else { ?>
+                                $menu_wp = wp_nav_menu($argsBold); ?>
+                            <?php } else { ?>
                                 <?= get_template_part('/templates/components/account-menu') ?>
                             <?php }
                         ?>

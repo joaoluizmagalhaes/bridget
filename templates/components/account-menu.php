@@ -12,5 +12,8 @@
     <li class="account__menu-list-item">
       <a href="#"><img src="<?php bloginfo('template_url'); ?>/_assets/img/heart.svg" alt="" class="svg account__menu-list-item-icon">Favoritos</a>
     </li>
+    <li class="account__menu-list-item logout">
+        <a href="<?= wp_logout_url(); ?>">Sair</a>
+    </li>
   </ul>
 </nav>
