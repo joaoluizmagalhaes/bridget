@@ -1,0 +1,44 @@
+.my-adds__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.my-adds__title {
+  font-size: 2.4rem;
+  color: $primary;
+  font-weight: 700;
+}
+
+.my-adds__card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  padding-right: 3rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 3rem;
+}
+
+.my-adds__thumb {
+  max-width: 20%;
+}
+
+.my-adds__link {
+  color: $secondary;
+  font-size: 1.6rem;
+  font-weight: 700;
+  @include transition(all);
+
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
+
+.btn__my-adds {
+  margin: 2rem 0;
+}

@@ -39,7 +39,8 @@
                 <div class="content__header">
                   <p class="price">R$ <?= esc_html(number_format($customFields['dados_do_anuncio']['valor_da_venda'],2,",",".")) ?></p>
                   <div class="social">
-                    <div class="social-item"><img src="<?php bloginfo('template_url'); ?>/_assets/img/heart.svg" alt="" class="svg card-favorite"><span class="text d-none d-md-block">Favoritar</span></div>
+  
+                    <div class="social-item"><?= get_favorites_button($post_id, $site_id); ?><span class="text d-none d-md-block">Favoritar</span></div>
                     <div class="social-item"><img src="<?php bloginfo('template_url'); ?>/_assets/img/share-icon.svg" alt="" class="svg card-favorite"><span class="text d-none d-md-block">Compartilhar</span></div>
                   </div>
                 </div>
