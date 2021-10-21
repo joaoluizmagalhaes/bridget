@@ -16,7 +16,7 @@
             <div class="sell__header-wrapper">
               <h2 class="title">Venda sua empresa com a Bridget</h2>
               <p class="subtitle">Anuncie seu negócio no nosso marketplace. É rápido e seguro.</p>
-              <a href="#" class="btn btn__secondary extra__padding">+ Criar anúncio</a>
+              <a href="<?= (!is_user_logged_in()) ? home_url() . '/criar-usuario/' : home_url() . '/criar-anuncio/' ?>" class="btn btn__secondary extra__padding">+ Criar anúncio</a>
             </div>
           </div>
         </div>
@@ -36,12 +36,29 @@
           <div class="col-12 col-md-5 offset-md-1">
             <div class="row">
               <div class="col-12">
-                <div class="sell__carousel">
+                <div class="sell__carousel carousel" id="carousel-sell">
                   <div class="sell__carousel-wrapper">
-                    <div class="sell__item">Avaliação da empresa (Valuation)</div>
-                    <div class="sell__item">Planejamento estratégico</div>
+                    <div class="item carousel__item">
+                      <div class="sell__item">Avaliação da empresa (Valuation)</div>
+                      <div class="sell__item">Planejamento estratégico</div>
+                    </div>
+                    <div class="item carousel__item">
+                      <div class="sell__item">Elaboração de Material Comercial</div>
+                      <div class="sell__item">Divulgação e Pesquisa de Mercado</div>
+                    </div>
+                    <div class="item carousel__item">
+                      <div class="sell__item">Abordagem de Interessados</div>
+                      <div class="sell__item">Termo de Confidencialidade</div>
+                    </div>
+                    <div class="item carousel__item">
+                      <div class="sell__item">Due Diligence</div>
+                      <div class="sell__item">Negociações</div>
+                    </div>
+                    <div class="item carousel__item">
+                      <div class="sell__item">Formalização</div>
+                    </div>
                   </div>
-                  <div class="sell__carousel-controls">
+                  <div class="sell__carousel-controls home__section-carousel-controls">
                     <div class="carousel-arrow-left disabled"><img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-left.svg" alt="" class=" svg"></div>
                     <div class="carousel-bullets-wrapper"></div>
                     <div class="carousel-arrow-right"><img src="<?php bloginfo('template_url'); ?>/_assets/img/arrow-right.svg" alt="" class=" svg"></div>
@@ -63,7 +80,7 @@
           </div>
           <div class="col-12">
             <div class="sell__button-wrapper">
-              <a href="#" class="btn btn__secondary extra__padding">+ Criar anúncio</a>
+              <a href="<?= (!is_user_logged_in()) ? home_url() . '/criar-usuario/' : home_url() . '/criar-anuncio/' ?>" class="btn btn__secondary extra__padding">+ Criar anúncio</a>
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@
         'key'         => 'group_615cd67d36416'
       ),
       'new_post'      => array(
-        'post_type'   => 'company',
+        'post_type'   => 'advertise',
         'post_status' => 'publish'
       ),
       'return'        => $redirect_url

@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="icon" href="<?php bloginfo('template_url'); ?>/_assets/img/favicon.png">
-    <title>Bridget <?php wp_title(); ?></title>
+    <title><?php wp_title(); ?></title>
     <meta name="description" content="Bridget">
     <meta name="keywords" content="">
     <meta name="author" content="João Magalhães">

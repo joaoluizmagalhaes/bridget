@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-12 col-md-5">
                       <h4 class="subtitle">Categoria</h4>
-                      <p class="text"><?= esc_html($customFields['dados_basicos']['segmento']) ?></p>
+                      <p class="text"><?= esc_html($customFields['dados_do_anuncio']['categoria']->name) ?></p>
                     </div>
                     <div class="col-12 col-md-5">
                       <h4 class="subtitle">Lucro líquido mensal</h4>

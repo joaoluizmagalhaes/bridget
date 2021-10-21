@@ -13,7 +13,7 @@
         wp_enqueue_style('bootstrap-grid', get_template_directory_uri().'/_assets/vendor/bootstrap/bootstrap.min.css');
         wp_enqueue_style('main-style', get_template_directory_uri().'/_assets/css/style.css');
 
-        if(is_singular('company')) {
+        if(is_singular('advertise')) {
             wp_enqueue_style('slick-css', get_template_directory_uri().'/_assets/vendor/slick/slick.css');
             wp_enqueue_style('slick-theme-css', get_template_directory_uri().'/_assets/vendor/slick/slick-theme.css');
         }
@@ -33,7 +33,7 @@
 		wp_enqueue_script('bridget-js');
         
 
-        if(is_singular('company')) {
+        if(is_singular('advertise')) {
 
             wp_register_script('bridget-company-js', get_template_directory_uri().'/_assets/js/single-company.js', array('jquery'),'1.0', true);
 		    wp_enqueue_script('bridget-company-js');
@@ -179,8 +179,8 @@
 
         $post_type = get_query_var('post_type');   
         
-        if( $wp_query->is_search && $post_type == 'company' ) {
-            return locate_template('archive-company.php');  //  redirect to archive-search.php
+        if( $wp_query->is_search && $post_type == 'advertise' ) {
+            return locate_template('archive-advertise.php');  //  redirect to archive-search.php
         }   
         
         return $template;   

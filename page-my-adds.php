@@ -28,7 +28,7 @@
             <div class="my-adds__wrapper">
               <?php 
                 $args = array(
-                    'post_type'      => 'company',
+                    'post_type'      => 'advertise',
                     'post_status'    => 'publish',
                     'author'         => get_current_user_id(),
                     'posts_per_page' => 4,
@@ -45,9 +45,11 @@
 
                     <div class="my-adds__card">
                       <img src="<?= get_the_post_thumbnail_url(); ?>" alt="" class="my-adds__thumb">
-                      <h3 class="my-adds__title"><?php the_title(); ?></h3>
-                      <a href="<?php the_permalink(); ?>" class="my-adds__link" target="_blank">Ver anúncio</a>
-                      <a href="<?= esc_url(home_url()); ?>/editar-anuncio?id=<?= the_ID(); ?>" class="my-adds__link" >Editar anúncio</a>
+                      <div class="my-adds__card-wrapper">
+                        <h3 class="my-adds__title"><?php the_title(); ?></h3>
+                        <a href="<?php the_permalink(); ?>" class="my-adds__link" target="_blank">Ver anúncio</a>
+                        <a href="<?= esc_url(home_url()); ?>/editar-anuncio?id=<?= the_ID(); ?>" class="my-adds__link" >Editar anúncio</a>
+                      </div>
                     </div>
 
                   <?php } ?>

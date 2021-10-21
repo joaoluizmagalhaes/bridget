@@ -2,7 +2,7 @@
     get_header();
 
     $args = array(
-      'post_type'      => 'company',
+      'post_type'      => 'advertise',
       'post_status'    => 'publish',
       'posts_per_page' => 12,
       'order'          => 'DESC',
@@ -23,7 +23,7 @@
           <div class="col-12">
             <div class="buy__list-header">
               <h3 class="buy__title">Empresas à venda</h3>
-              <?php get_template_part('/templates/components/searchform-company'); ?>
+              <?php get_template_part('/templates/components/searchform-advertise'); ?>
               <p class="buy__subtitle"> <?= esc_html($count); ?> <?= ($count <= 1) ? 'resultado de busca encontrado' : 'resultados de busca encontrados' ;?></p>
             </div>
             <div class="row">
@@ -49,7 +49,7 @@
                                 <img src="<?= get_the_post_thumbnail_url(); ?>" alt="">
                                 <div class="card-wrapper">
                                   <img src="<?php bloginfo('template_url'); ?>/_assets/img/heart-full.svg" alt="" class="svg card-favorite">
-                                  <p class="card-category"><?= get_the_category()[0]->name; ?></p>
+                                  <p class="card-category"><?= esc_html($customFields['dados_do_anuncio']['categoria']->name) ?></p>
                                   <p class="card-title"><?php the_title(); ?></p>
                                   <p class="card-text"><?= esc_html($customFields['dados_do_anuncio']['cidade']); ?></p>
                                   <p class="card-text"><?= esc_html($customFields['dados_do_anuncio']['estado']); ?></p>
