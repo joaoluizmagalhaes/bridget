@@ -41,7 +41,7 @@
                   <div class="social">
   
                     <div class="social-item"><?= get_favorites_button($post_id, $site_id); ?><span class="text d-none d-md-block">Favoritar</span></div>
-                    <div class="social-item"><img src="<?php bloginfo('template_url'); ?>/_assets/img/share-icon.svg" alt="" class="svg card-favorite"><span class="text d-none d-md-block">Compartilhar</span></div>
+                    <div class="social-item share-btn"><img src="<?php bloginfo('template_url'); ?>/_assets/img/share-icon.svg" alt="" class="svg card-favorite "><span class="text d-none d-md-block">Compartilhar</span></div>
                   </div>
                 </div>
               </div>
@@ -67,7 +67,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <p class="code">Código <?= get_the_ID(); ?></p>
+                      <p class="code">Ref <?= get_the_ID(); ?></p>
                       </div>
                   </div>
                   <div class="row">
@@ -109,39 +109,56 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-md-4 buy__card">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/img-buy.jpg" alt="">
-                <div class="card-wrapper">
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/heart-full.svg" alt="" class="svg card-favorite">
-                  <p class="card-category">Categoria</p>
-                  <p class="card-title">Nome da Empresa</p>
-                  <p class="card-text">Cidade</p>
-                  <p class="card-text">Estado</p>
-                  <p class="card-title">R$ 85.000</p>
-                </div>
-              </div>
-              <div class="col-12 col-md-4 buy__card">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/img-buy.jpg" alt="">
-                <div class="card-wrapper">
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/heart.svg" alt="" class="svg card-favorite">
-                  <p class="card-category">Categoria</p>
-                  <p class="card-title">Nome da Empresa</p>
-                  <p class="card-text">Cidade</p>
-                  <p class="card-text">Estado</p>
-                  <p class="card-title">R$ 85.000</p>
-                </div>
-              </div>
-              <div class="col-12 col-md-4 buy__card">
-                <img src="<?php bloginfo('template_url'); ?>/_assets/img/img-buy.jpg" alt="">
-                <div class="card-wrapper">
-                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/heart.svg" alt="" class="svg card-favorite">
-                  <p class="card-category">Categoria</p>
-                  <p class="card-title">Nome da Empresa</p>
-                  <p class="card-text">Cidade</p>
-                  <p class="card-text">Estado</p>
-                  <p class="card-title">R$ 85.000</p>
-                </div>
-              </div>
+              <?php 
+                $args = array(
+                  'post_type'      => 'advertise',
+                  'post_status'    => 'publish',
+                  'posts_per_page' => 3,
+                  'order'          => 'DESC',
+                  'orderby'        => 'date',
+                  'tax_query'      => array(
+                    array (
+                        'taxonomy' => 'segments',
+                        'field'    => 'slug',
+                        'terms'    => esc_html($customFields['dados_do_anuncio']['categoria']->name),
+                    )
+                  ),
+                );
+            
+                $the_query = new WP_Query( $args );
+
+                //The Loop
+                if ( $the_query->have_posts() ) {
+                    while ( $the_query->have_posts() ) {
+                        $the_query->the_post(); 
+                        $customFields = get_fields();
+
+                        $classes = array(
+                          'search__article',
+                          'col-12',
+                          'col-md-6',
+                          'buy__card'
+                        )
+                        
+                        ?>
+                          
+                            <article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
+                              <a href="<?= esc_url(the_permalink()); ?>">
+                                <img src="<?= get_the_post_thumbnail_url(); ?>" alt="">
+                                <div class="card-wrapper">
+                                  <img src="<?php bloginfo('template_url'); ?>/_assets/img/heart-full.svg" alt="" class="svg card-favorite">
+                                  <p class="card-category"><?= esc_html($customFields['dados_do_anuncio']['categoria']->name) ?></p>
+                                  <p class="card-title"><?php the_title(); ?></p>
+                                  <p class="card-text"><?= esc_html($customFields['dados_do_anuncio']['cidade']); ?></p>
+                                  <p class="card-text"><?= esc_html($customFields['dados_do_anuncio']['estado']); ?></p>
+                                  <p class="card-title">R$ <?= esc_html(number_format($customFields['dados_do_anuncio']['valor_da_venda'],2,",",".")); ?></p>
+                                </div>
+                              </a>
+                            </article>
+                          
+                    
+                    <?php } ?>
+                <?php } ?>
             </div>
             <div class="row">
               <div class="col-12 company__related-wrapper">

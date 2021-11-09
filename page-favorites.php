@@ -32,7 +32,7 @@
 
                 $args = array(
                   'post__in' => $posts_id,
-                  'post_type' => 'company'
+                  'post_type' => 'advertise'
                 );
 
                 $the_query = new WP_Query( $args );
@@ -49,7 +49,7 @@
                         <img src="<?= get_the_post_thumbnail_url(); ?>" alt="">
                         <div class="card-wrapper">
                           <img src="<?php bloginfo('template_url'); ?>/_assets/img/heart-full.svg" alt="" class="svg card-favorite">
-                          <p class="card-category">Categoria</p>
+                          <p class="card-category"><?= esc_html($customFields['dados_do_anuncio']['categoria']->name) ?></p>
                           <p class="card-title"><?php the_title(); ?></p>
                           <p class="card-text"><?= esc_html($customFields['dados_do_anuncio']['cidade']) ?></p>
                           <p class="card-text"><?= esc_html($customFields['dados_do_anuncio']['estado']) ?></p>

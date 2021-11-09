@@ -5,10 +5,10 @@
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-lg-3">
+      <div class="col-12 col-lg-2">
         <img src="<?php bloginfo('template_url'); ?>/_assets/img/logo-white.svg" alt="" class="svg footer__logo">
       </div>
-      <div class="col-12 col-lg-5">
+      <div class="col-12 col-lg-6">
         <div class="row">
           <div class="col-12 col-lg-4 order-1 ">
             <h4 class="footer__title">Serviços</h4>

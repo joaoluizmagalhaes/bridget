@@ -81,13 +81,13 @@
       e.stopPropagation();
       e.preventDefault();
       if($('.header__menu').hasClass('closed')) {
-        $('.header__menu-icon').attr('src', document.location.origin + '/wp-content/themes/bridget/_assets/img/close.svg');
+        $('.header__menu-icon').attr('src', document.location.origin + '/testes/wp-content/themes/bridget/_assets/img/close.svg');
         $('.header__menu').addClass('open').removeClass('closed');
         TweenMax.fromTo($('.header__menu'), 0.6, {x: -100, display: 'none', opacity: 0}, {x:0, display: 'flex', opacity: 1 });
       } else if($('.header__menu').hasClass('open')) {
         $('.header__login-menu').addClass('closed').removeClass('open');
         TweenMax.fromTo($('.header__login-menu'), 0.6, {y:0, display: 'flex', opacity: 1 }, {y: -100, display: 'none', opacity: 0});
-        $('.header__menu-icon').attr('src', document.location.origin + '/wp-content/themes/bridget/_assets/img/menu-icon.svg');
+        $('.header__menu-icon').attr('src', document.location.origin + '/testes/wp-content/themes/bridget/_assets/img/menu-icon.svg');
         $('.header__menu').addClass('closed').removeClass('open');
         close($('.header__menu'));
         
@@ -107,6 +107,21 @@
       }
 
     });
+
+    $('.share-btn').click(function(){
+      if (navigator.share) {
+        navigator.share({
+          title: $('.company__title').val,
+          url: window.location.href
+        }).then(() => {
+          console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+      } else {
+        console.log('aaaaa')
+      }
+    });
+
 
     function close(menu) {
         TweenMax.fromTo(menu, 0.8, {x:0, display: 'flex', opacity: 1}, {x: -100, display: 'none', opacity: 0});
@@ -232,8 +247,7 @@
     }
 
     //enable swip for change the carousel
-    var body = document.querySelector('body');
-    var hammertime = new Hammer(body);
+
 
     /*
       * Resume email send
@@ -347,90 +361,7 @@
         }
       });
     }
-
-    if($("#acf-field_614152be36a37").val().length <= 11){
-      $("#acf-field_614152be36a37").mask("999.999.999-99");
-    } else {
-      $("#acf-field_614152be36a37").mask("99.999.999/9999-99");
-    }
-
-
-    $("#acf-field_614152be36a37").keydown(function(){
-      try {
-          $("#acf-field_614152be36a37").unmask();
-      } catch (e) {}
-  
-      var tamanho = $("#acf-field_614152be36a37").val().length;
-  
-      if(tamanho < 11){
-          $("#acf-field_614152be36a37").mask("999.999.999-99");
-      } else {
-          $("#acf-field_614152be36a37").mask("99.999.999/9999-99");
-      }
-  
-      // ajustando foco
-      var elem = this;
-      setTimeout(function(){
-          // mudo a posição do seletor
-          elem.selectionStart = elem.selectionEnd = 10000;
-      }, 0);
-      // reaplico o valor para mudar o foco
-      var currentValue = $(this).val();
-      $(this).val('');
-      $(this).val(currentValue);
-    });
-
-    $("#acf-field_614153d536a3b").keydown(function(){
-      try {
-          $("#acf-field_614153d536a3b").unmask();
-      } catch (e) {}
-  
-      var tamanho = $("#acf-field_614153d536a3b").val().length;
-      console.log(tamanho);
-  
-      if(tamanho < 10){
-          $("#acf-field_614153d536a3b").mask("(99) 9999-9999");
-      } else {
-          $("#acf-field_614153d536a3b").mask("(99) 99999-9999");
-      }
-  
-      // ajustando foco
-      var elem = this;
-      setTimeout(function(){
-          // mudo a posição do seletor
-          elem.selectionStart = elem.selectionEnd = 10000;
-      }, 0);
-      // reaplico o valor para mudar o foco
-      var currentValue = $(this).val();
-      $(this).val('');
-      $(this).val(currentValue);
-    });
-
-    $("#acf-field_6141540336a3c").keydown(function(){
-      try {
-          $("#acf-field_6141540336a3c").unmask();
-      } catch (e) {}
-  
-      var tamanho = $("#acf-field_6141540336a3c").val().length;
-  
-      if(tamanho < 10){
-          $("#acf-field_6141540336a3c").mask("(99) 9999-9999");
-      } else {
-          $("#acf-field_6141540336a3c").mask("(99) 99999-9999");
-      }
-  
-      // ajustando foco
-      var elem = this;
-      setTimeout(function(){
-          // mudo a posição do seletor
-          elem.selectionStart = elem.selectionEnd = 10000;
-      }, 0);
-      // reaplico o valor para mudar o foco
-      var currentValue = $(this).val();
-      $(this).val('');
-      $(this).val(currentValue);
-    });
-
+ 
 
   });
 
